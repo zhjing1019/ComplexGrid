@@ -2,8 +2,8 @@
 // 创建表格主体部分
 
 import SvgIcon from '../SvgIcon.vue'
-import '@/common/icon/hang-cao-zuo.svg'
-import '@/common/icon/icon-tuozhuai.svg'
+// import '@/common/icon/hang-cao-zuo.svg'
+// import '@/common/icon/icon-tuozhuai.svg'
 import OperateMenu from '../OperateMenu/OperateMenu.vue'
 import SumCreateCheckbox from './SumCreateCheckbox.vue'
 
