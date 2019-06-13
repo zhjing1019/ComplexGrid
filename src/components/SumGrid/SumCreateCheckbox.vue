@@ -1,8 +1,8 @@
 <script type="text/jsx">
 // 创建表格主体部分
 import SvgIcon from '../SvgIcon.vue'
-// import '@/common/icon/hang-cao-zuo.svg'
-// import '@/common/icon/icon-tuozhuai.svg'
+import '@/assets/icon/hang-cao-zuo.svg'
+import '@/assets/icon/icon-tuozhuai.svg'
 import OperateMenu from '../OperateMenu/OperateMenu.vue'
 
 export default {
@@ -32,7 +32,7 @@ export default {
     checkBox () {
       let isTree = this.table.isTree
       let checkbox = (<el-checkbox
-        style={{ width: this.table.checkWidth + 'px'}}
+        style={{width: this.table.checkWidth + 'px'}}
         ref={isTree ? this.rowData.id : ''}
         value={isTree
           ? (this.table.treeDataChecked.list[this.realIndex])
@@ -44,7 +44,7 @@ export default {
     },
     checkAllBox () {
       let checkbox = <el-checkbox
-        style={{ width: this.table.checkWidth + 'px'}}
+        style={{width: this.table.checkWidth + 'px'}}
         onchange={(value) => {
           this.$emit('checkAll', value)
         }}

@@ -2,8 +2,8 @@
 // 创建表格主体部分
 
 import SvgIcon from '../SvgIcon.vue'
-// import '@/common/icon/hang-cao-zuo.svg'
-// import '@/common/icon/icon-tuozhuai.svg'
+import '@/assets/icon/hang-cao-zuo.svg'
+import '@/assets/icon/icon-tuozhuai.svg'
 import OperateMenu from '../OperateMenu/OperateMenu.vue'
 import SumCreateCheckbox from './SumCreateCheckbox.vue'
 
@@ -81,29 +81,29 @@ export default {
     createRow (h, rowData, index, rows = [], level = 1) {
       let [cells, targetId, whereInsert, theme, isTree] = [[], this.table.targetId, this.table.whereInsert, this.table.theme, this.table.isTree]
       this.tableSub.nodes.all.push(rowData)
-      let isDragActTop = isTree ? (rowData.id == targetId) && whereInsert == 'top' && theme !== 'red' : (index == targetId) && whereInsert == 'top' && theme !== 'red'
-      let isDragActBottom = isTree ? (rowData.id == targetId) && whereInsert == 'bottom' && theme !== 'red' : (index == targetId) && whereInsert == 'bottom' && theme !== 'red'
-      let isDragActTopRed = isTree ? (rowData.id == targetId) && whereInsert == 'top' && theme == 'red' : (index == targetId) && whereInsert == 'top' && theme == 'red'
-      let isDragActBottomRed = isTree ? (rowData.id == targetId) && whereInsert == 'bottom' && theme == 'red' : (index == targetId) && whereInsert == 'bottom' && theme == 'red'
+      let isDragActTop = isTree ? (rowData.id === targetId) && whereInsert === 'top' && theme !== 'red' : (index === targetId) && whereInsert === 'top' && theme !== 'red'
+      let isDragActBottom = isTree ? (rowData.id === targetId) && whereInsert === 'bottom' && theme !== 'red' : (index === targetId) && whereInsert === 'bottom' && theme !== 'red'
+      let isDragActTopRed = isTree ? (rowData.id === targetId) && whereInsert === 'top' && theme === 'red' : (index === targetId) && whereInsert === 'top' && theme === 'red'
+      let isDragActBottomRed = isTree ? (rowData.id === targetId) && whereInsert === 'bottom' && theme === 'red' : (index === targetId) && whereInsert === 'bottom' && theme === 'red'
       let realIndex = isTree ? this.tableSub.getRank(rowData.id) : index
       if (this.table.checkable) {
         let checkbox = (<sum-create-checkbox rowData={rowData} realIndex={realIndex} isAll={false} onCheckChang={(val, rowData, index) => { this.$emit('checkChang', val, rowData, index) }}></sum-create-checkbox>)
-        cells.push(<td class={{'act-top-drag': isDragActTop, 'act-bottom-drag': isDragActBottom, 'act-top-drag-red': isDragActTopRed, 'act-bottom-drag-red': isDragActBottomRed}} style={{ width: this.table.checkWidth + 'px', textAlign: this.table.textAlign}}>{checkbox}</td>)
+        cells.push(<td class={{'act-top-drag': isDragActTop, 'act-bottom-drag': isDragActBottom, 'act-top-drag-red': isDragActTopRed, 'act-bottom-drag-red': isDragActBottomRed}} style={{width: this.table.checkWidth + 'px', textAlign: this.table.textAlign}}>{checkbox}</td>)
       }
       let serial = index + 1 < 10 ? '0' + (index + 1) : index + 1
       if (!isTree) { cells.push(<td class={{'act-top-drag': isDragActTop, 'act-bottom-drag': isDragActBottom, 'act-top-drag-red': isDragActTopRed, 'act-bottom-drag-red': isDragActBottomRed}} style={{ width: this.table.serialWidth + 'px', textAlign: this.table.textAlign }}>{serial}</td>) }
       let expanded = this.table.expandStatus ? this.table.expandStatus[rowData.id] : false
 
       let isCurrnetHoverRow = false
-      if (this.table.hoverRowData) { isCurrnetHoverRow = this.table.hoverRowData.id == rowData.id && isTree }
+      if (this.table.hoverRowData) { isCurrnetHoverRow = this.table.hoverRowData.id === rowData.id && isTree }
       let count = this.tableSub.onlyFix ? this.table.fixCols : this.table.actualFields.length
       for (let i = 0; i < count; i++) {
         let field = this.table.actualFields[i]
-        if (i == 0) {
+        if (i === 0) {
           cells.push(this.createFirstCell(h, rowData, field, level, index, i))
         } else {
           cells.push(
-            this.createBodyCell(h, rowData, field, i + 1 == this.table.fixCols, index, i)
+            this.createBodyCell(h, rowData, field, i + 1 === this.table.fixCols, index, i)
           )
         }
       }
@@ -113,14 +113,14 @@ export default {
         }}
         onmouseout={
           event => {
-            if (event.currentTarget != event.target) {
+            if (event.currentTarget !== event.target) {
               return false
             }
             // 重置
             this.table.hoverRowData = null
           }}
         style={ { height: this.table.rowHeight + 'px' } }
-        class={{ 'tr-active': isTree ? this.table.treeDataChecked.list[this.tableSub.getRank(rowData.id)] : this.table.checked.list[index], 'tr-hover': this.table.isTree ? isCurrnetHoverRow : this.table.hoverRow == index}}>
+        class={{'tr-active': isTree ? this.table.treeDataChecked.list[this.tableSub.getRank(rowData.id)] : this.table.checked.list[index], 'tr-hover': this.table.isTree ? isCurrnetHoverRow : this.table.hoverRow === index}}>
         {cells}
       </tr>)
       if (expanded && rowData.children && rowData.children.length > 0 && this.table.isTree) {
@@ -135,7 +135,7 @@ export default {
       let SvgIcon = (<span
         class={{
           'tool-svg-icon': true,
-          hide: !(this.table.hoverRowData == rowData) || !(Object.keys(this.table.OperateMenuData).length > 0)
+          hide: !(this.table.hoverRowData === rowData) || !(Object.keys(this.table.OperateMenuData).length > 0)
         }}><svg-icon width={14} height={14} name={'hang-cao-zuo'}></svg-icon></span>)
       if (field.slot && Object.keys(this.tableSub.$scopedSlots).length > 0) {
         SvgIcon = h(
@@ -234,10 +234,10 @@ export default {
       let expandIcon = this.createFirstExpandIcon(rowData)
       let content = this.createFirstLinkable(h, rowData, field, rowIndex, colIndex)
       let [cell, targetId, isTree, whereInsert, theme, serialContent, isCurrnetHoverRow, isDragHoverRow] = [[], this.table.targetId, this.table.isTree, this.table.whereInsert, this.table.theme, [], false, false]
-      let isDragActTop = isTree ? (rowData.id == targetId) && whereInsert == 'top' && theme !== 'red' : (rowIndex == targetId) && whereInsert == 'top' && theme !== 'red'
-      let isDragActBottom = isTree ? (rowData.id == targetId) && whereInsert == 'bottom' && theme !== 'red' : (rowIndex == targetId) && whereInsert == 'bottom' && theme !== 'red'
-      let isDragActTopRed = isTree ? (rowData.id == targetId) && whereInsert == 'top' && theme == 'red' : (rowIndex == targetId) && whereInsert == 'top' && theme == 'red'
-      let isDragActBottomRed = isTree ? (rowData.id == targetId) && whereInsert == 'bottom' && theme == 'red' : (rowIndex == targetId) && whereInsert == 'bottom' && theme == 'red'
+      let isDragActTop = isTree ? (rowData.id === targetId) && whereInsert === 'top' && theme !== 'red' : (rowIndex === targetId) && whereInsert === 'top' && theme !== 'red'
+      let isDragActBottom = isTree ? (rowData.id === targetId) && whereInsert === 'bottom' && theme !== 'red' : (rowIndex === targetId) && whereInsert === 'bottom' && theme !== 'red'
+      let isDragActTopRed = isTree ? (rowData.id === targetId) && whereInsert === 'top' && theme === 'red' : (rowIndex === targetId) && whereInsert === 'top' && theme === 'red'
+      let isDragActBottomRed = isTree ? (rowData.id === targetId) && whereInsert === 'bottom' && theme === 'red' : (rowIndex === targetId) && whereInsert === 'bottom' && theme === 'red'
       let SvgIcon = this.createFirstSvgIcon(h, rowData, field, level, rowIndex, colIndex)
       let operateMenus = this.createFirstOperate(h, rowData, field, level, rowIndex)
       let dragSvg = (<span style={{position: 'absolute', left: '0', 'verticalAlign': 'middle', cursor: 'move'}} onclick={(event) => { console.log('click,%o', event) }}>
@@ -252,16 +252,16 @@ export default {
         hoverRowData: this.table.hoverRowData
       }
       if (this.table.hoverRowData) {
-        isCurrnetHoverRow = this.table.hoverRowData.id == rowData.id && this.table.isTree
-        isDragHoverRow = this.table.hoverRow == rowIndex && this.table.isDrag
+        isCurrnetHoverRow = this.table.hoverRowData.id === rowData.id && this.table.isTree
+        isDragHoverRow = this.table.hoverRow === rowIndex && this.table.isDrag
       }
       let [dragCon, oper, svg] = [[], '', '']
       if (isTree ? isCurrnetHoverRow : isDragHoverRow) dragCon = [dragSvg]
       isTree ? cell = [expandIcon, ...content] : cell = content
       serialContent = [...serialContent, ...cell]
-      if ((isTree ? isCurrnetHoverRow : rowIndex != -1) && Object.keys(this.table.OperateMenuData).length > 0) { oper = operateMenus }
-      if ((isTree ? isCurrnetHoverRow : rowIndex != -1)) { svg = SvgIcon }
-      return (<td class={{'act-top-drag': isDragActTop, 'act-bottom-drag': isDragActBottom, 'act-top-drag-red': isDragActTopRed, 'act-bottom-drag-red': isDragActBottomRed}} style={{ width: field.width + 'px', textAlign: this.table.isTree ? 'left' : this.table.textAlign, paddingLeft: this.table.isTree ? level * 20 + 'px' : '', paddingRight: '20px'}}>
+      if ((isTree ? isCurrnetHoverRow : rowIndex !== -1) && Object.keys(this.table.OperateMenuData).length > 0) { oper = operateMenus }
+      if ((isTree ? isCurrnetHoverRow : rowIndex !== -1)) { svg = SvgIcon }
+      return (<td class={{'act-top-drag': isDragActTop, 'act-bottom-drag': isDragActBottom, 'act-top-drag-red': isDragActTopRed, 'act-bottom-drag-red': isDragActBottomRed}} style={{width: field.width + 'px', textAlign: this.table.isTree ? 'left' : this.table.textAlign, paddingLeft: this.table.isTree ? level * 20 + 'px' : '', paddingRight: '20px'}}>
         <div class="pos-relative" style={{ width: field.width - 60 + 'px' }}>
           <span
             style={{ width: field.width - 60 + 'px' }}
@@ -284,10 +284,10 @@ export default {
     createBodyCell (h, rowData, field, borderRight, rowIndex, colIndex) {
       // 此处需要插入slot；
       let [targetId, isTree, whereInsert, theme] = [this.table.targetId, this.table.isTree, this.table.whereInsert, this.table.theme]
-      let isDragActTop = isTree ? (rowData.id == targetId) && whereInsert == 'top' && theme !== 'red' : (rowIndex == targetId) && whereInsert == 'top' && theme !== 'red'
-      let isDragActBottom = isTree ? (rowData.id == targetId) && whereInsert == 'bottom' && theme !== 'red' : (rowIndex == targetId) && whereInsert == 'bottom' && theme !== 'red'
-      let isDragActTopRed = isTree ? (rowData.id == targetId) && whereInsert == 'top' && theme == 'red' : (rowIndex == targetId) && whereInsert == 'top' && theme == 'red'
-      let isDragActBottomRed = isTree ? (rowData.id == targetId) && whereInsert == 'bottom' && theme == 'red' : (rowIndex == targetId) && whereInsert == 'bottom' && theme == 'red'
+      let isDragActTop = isTree ? (rowData.id === targetId) && whereInsert === 'top' && theme !== 'red' : (rowIndex === targetId) && whereInsert === 'top' && theme !== 'red'
+      let isDragActBottom = isTree ? (rowData.id === targetId) && whereInsert === 'bottom' && theme !== 'red' : (rowIndex === targetId) && whereInsert === 'bottom' && theme !== 'red'
+      let isDragActTopRed = isTree ? (rowData.id === targetId) && whereInsert === 'top' && theme === 'red' : (rowIndex === targetId) && whereInsert === 'top' && theme === 'red'
+      let isDragActBottomRed = isTree ? (rowData.id === targetId) && whereInsert === 'bottom' && theme === 'red' : (rowIndex === targetId) && whereInsert === 'bottom' && theme === 'red'
       if (field.slot && Object.keys(this.tableSub.$scopedSlots).length > 0) {
         return h(
           'td',
@@ -382,7 +382,7 @@ export default {
       }
     },
     draging (e) {
-      if (e.pageX == this.dragX && e.pageY == this.dragY) return
+      if (e.pageX === this.dragX && e.pageY === this.dragY) return
       this.tableSub.dragX = e.pageX
       this.tableSub.dragY = e.pageY
       // 改变鼠标目标元素的样式
@@ -399,7 +399,7 @@ export default {
       e.target.classList.remove('drag-ing')
       if (this.table.isTree) {
         this.table.treeDataDetail.forEach(x => {
-          if (x.id == this.table.targetId) dragEndData = x
+          if (x.id === this.table.targetId) dragEndData = x
         })
       } else {
         dragEndData = this.table.treeDataDetail[this.table.targetId]
@@ -428,7 +428,7 @@ export default {
       let dragData = {}
       if (this.table.isTree) {
         this.table.treeDataDetail.forEach(x => {
-          if (x.id == startDragId) dragData = x
+          if (x.id === startDragId) dragData = x
         })
       } else {
         dragData = this.table.treeDataDetail[startDragId]

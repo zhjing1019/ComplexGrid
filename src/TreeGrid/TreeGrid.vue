@@ -1,6 +1,5 @@
 <template>
   <div style="padding: 15px; height: 200px">
-    <br />
     <sum-grid
       ref="treeGrid1"
       :fields="treeGridJson.fields"
@@ -21,7 +20,7 @@
     >
       <template slot="JGQC" slot-scope="field" class="fl-td">
         <span
-          v-if="field.field.hoverRowData == field.field.rowData"
+          v-if="field.field.hoverRowDatafield.field.rowData"
           class="icon-del-index"
           @click="del(field.field.rowIndex)"
         >
@@ -29,14 +28,14 @@
         </span>
 
         <span
-          v-if="field.field.hoverRowData == field.field.rowData"
+          v-if="field.field.hoverRowData === field.field.rowData"
           class="icon-del-index"
           @click="del(field.field.rowIndex)"
         >
           <svg-icon name="icon-fuzhi" :width="16" :height="16"></svg-icon>
         </span>
 
-        <span v-if="field.field.hoverRowData == field.field.rowData" class="icon-del-index">
+        <span v-if="field.field.hoverRowData === field.field.rowData" class="icon-del-index">
           <svg-icon name="icon-edit" :width="16" :height="14"></svg-icon>
         </span>
       </template>
@@ -159,7 +158,7 @@
     >
       <template slot="JGQC" slot-scope="field" class="fl-td">
         <span
-          v-if="field.field.rowIndex == field.field.hoverRow"
+          v-if="field.field.rowIndex === field.field.hoverRow"
           class="icon-del-index"
           @click="del(field.field.rowIndex)"
         >
@@ -167,14 +166,14 @@
         </span>
 
         <span
-          v-if="field.field.rowIndex == field.field.hoverRow"
+          v-if="field.field.rowIndex === field.field.hoverRow"
           class="icon-del-index"
           @click="del(field.field.rowIndex)"
         >
           <svg-icon name="icon-fuzhi" :width="16" :height="16"></svg-icon>
         </span>
 
-        <span v-if="field.field.rowIndex == field.field.hoverRow" class="icon-del-index">
+        <span v-if="field.field.rowIndex === field.field.hoverRow" class="icon-del-index">
           <svg-icon name="icon-edit" :width="16" :height="14"></svg-icon>
         </span>
       </template>

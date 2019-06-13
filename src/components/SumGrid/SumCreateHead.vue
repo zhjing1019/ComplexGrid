@@ -17,13 +17,13 @@ export default {
     createHead (h) {
       let tr = []
       this.table.allHeadRow.forEach((x, index) => {
-        if (index == 0) {
+        if (index === 0) {
           tr.push(<tr style={{height: this.table.rowHeight + 'px'}}>{this.creatFirstHeadTr(h)}</tr>)
         } else {
           let cells = []
           let count = this.tableSub.onlyFix ? this.table.fixCols - 1 : x.length
           for (let i = 0; i < count; i++) {
-            cells.push(this.createHeadCell(h, x[i], i + 1 == this.table.fixCols))
+            cells.push(this.createHeadCell(h, x[i], i + 1 === this.table.fixCols))
           }
 
           tr.push(<tr style={{height: this.table.rowHeight + 'px'}}>{cells}</tr>)
@@ -44,7 +44,7 @@ export default {
       if (!this.table.isTree) cells.push(thTwo)
       let count = this.tableSub.onlyFix ? this.table.fixCols : this.table.fields.length
       for (let i = 0; i < count; i++) {
-        cells.push(this.createHeadCell(h, this.table.fields[i], i + 1 == this.table.fixCols))
+        cells.push(this.createHeadCell(h, this.table.fields[i], i + 1 === this.table.fixCols))
       }
       return cells
     },
@@ -54,7 +54,7 @@ export default {
 
       if (data.length > 1) {
         colspan = data[data.length - 1].length
-        rowspan = rowspanCount - data.length == 0 ? 1 : rowspanCount - data.length
+        rowspan = rowspanCount - data.length === 0 ? 1 : rowspanCount - data.length
       } else {
         colspan = 1
         rowspan = rowspanCount
@@ -69,19 +69,15 @@ export default {
           'up-arrow': true,
           'up-arrow-active':
                     self.table.sorted &&
-                    self.table.sorted.findIndex(s => s.id == field.id) != -1 &&
-                    self.table.sorted[
-                      self.table.sorted.findIndex(s => s.id == field.id)
-                    ].asc
+                    self.table.sorted.findIndex(s => s.id === field.id) !== -1 &&
+                    self.table.sorted[self.table.sorted.findIndex(s => s.id === field.id)].asc
         }
         let spanDownClass = {
           'down-arrow': true,
           'down-arrow-active':
                     self.table.sorted &&
-                    self.table.sorted.findIndex(s => s.id == field.id) != -1 &&
-                    !self.table.sorted[
-                      self.table.sorted.findIndex(s => s.id == field.id)
-                    ].asc
+                    self.table.sorted.findIndex(s => s.id === field.id) !== -1 &&
+                    !self.table.sorted[self.table.sorted.findIndex(s => s.id === field.id)].asc
         }
         let arrowSpan = (<span class="arrow-content" onClick={() => this.sortOrder(field.id)}>
           <span class={spanClass}></span>
@@ -94,8 +90,8 @@ export default {
       return (<th colspan={this.spanCount(field).colspan} rowspan={this.spanCount(field).rowspan} style={{ width: field.width + 'px', height: this.table.rowHeight + 'px', textAlign: this.table.textAlign, borderRight: this.table.moreHead ? '' : '1px solid #d9d9d9' }} class={borderRight}>{headContent}</th>)
     },
     sortOrder (currentId) {
-      let index = this.table.sorted.findIndex(s => currentId == s.id)
-      if (index == -1) {
+      let index = this.table.sorted.findIndex(s => currentId === s.id)
+      if (index === -1) {
         // sorted中没有，追加
         this.table.sorted.push({
           id: currentId,

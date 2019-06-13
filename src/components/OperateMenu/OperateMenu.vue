@@ -37,16 +37,16 @@
 </template>
 <script>
 export default {
-  data() {
-    return {};
+  data () {
+    return {}
   },
-  inject: ["table"],
+  inject: ['table'],
   methods: {
-    handleSelect(key) {
-      this.$emit("select", key);
+    handleSelect (key) {
+      this.$emit('select', key)
     }
   }
-};
+}
 </script>
 <style lang="scss">
 .el-menu-item,

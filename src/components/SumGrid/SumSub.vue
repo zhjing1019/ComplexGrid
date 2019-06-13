@@ -1,7 +1,7 @@
 <script type="text/jsx">
 import Vue from 'vue'
-// import '@/common/icon/hang-cao-zuo.svg'
-// import '@/common/icon/icon-tuozhuai.svg'
+import '@/assets/icon/hang-cao-zuo.svg'
+import '@/assets/icon/icon-tuozhuai.svg'
 import SvgIcon from '../SvgIcon.vue'
 import SumCreateHead from './SumCreateHead.vue'
 import SumCreateBody from './SumCreateBody.vue'
@@ -93,7 +93,7 @@ export default {
         this.table.treeDataChecked.list.forEach(x => {
           if (x) count++
         })
-        count == length
+        count === length
           ? (this.table.treeDataChecked.all = true)
           : (this.table.treeDataChecked.all = false)
       } else {
@@ -102,7 +102,7 @@ export default {
         this.table.checked.list.forEach(x => {
           if (x) count++
         })
-        count == length
+        count === length
           ? (this.table.checked.all = true)
           : (this.table.checked.all = false)
       }
@@ -157,11 +157,11 @@ export default {
       let rowIndex
       let target = event.target
       let nodeName = target.localName ? target.localName : ''
-      if (nodeName == null) return
+      if (nodeName === null) return
       let parentTa = ''
-      if (nodeName == 'td') {
+      if (nodeName === 'td') {
         rowIndex = target.parentNode.rowIndex - this.table.allHeadRow.length
-      } else if (nodeName == 'th' || nodeName == 'table') {
+      } else if (nodeName === 'th' || nodeName === 'table') {
         rowIndex = -1
       } else {
         parentTa = this.getParentTag(target)
@@ -185,7 +185,7 @@ export default {
         return
       }
       if (nodeName !== 'BODY') {
-        if (nodeName == 'TD') {
+        if (nodeName === 'TD') {
           return startTag.parentElement
         } else {
           if (startTag.parentElement.parentElement) {
