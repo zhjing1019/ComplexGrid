@@ -2,78 +2,78 @@ export default {
   fields: [
     {
       id: 'PW',
-      title: '评委',
+      title: '测试',
       width: 100
     },
     {
       id: 'JGJC',
-      title: '名称',
+      title: '测试',
       width: 600,
       children: [
         {
           id: 'Beijing',
-          title: '北京科技部',
+          title: '测试',
           width: 150,
           children: [
             {
               id: 'DFX1',
-              title: '打分项',
+              title: '测试',
               width: 150
             },
             {
               id: 'JFX1',
-              title: '加分项',
+              title: '测试',
               width: 150
             }
           ]
         },
         {
           id: 'GuangXi',
-          title: '广西支部',
+          title: '测试',
           width: 150,
           children: [
             {
               id: 'DFX2',
-              title: '打分项',
+              title: '测试',
               width: 150
             },
             {
               id: 'JFX2',
-              title: '加分项',
+              title: '测试',
               width: 150
             }
           ]
         },
         {
           id: 'GuangXi',
-          title: '支部',
+          title: '测试',
           width: 150,
           children: [
             {
               id: 'DFX3',
-              title: '打分项',
+              title: '测试',
               width: 150
             },
             {
               id: 'JFX3',
-              title: '加分项',
+              title: '测试',
               width: 150
             }
           ]
         },
         {
           id: 'GuangXi',
-          title: '支部',
+          title: '测试',
           width: 150,
           children: [
             {
               id: 'DFX4',
-              title: '打分项',
+              title: '测试',
               width: 150
             },
             {
               id: 'JFX4',
-              title: '加分项',
+              title: '测试',
               width: 150
             }
           ]

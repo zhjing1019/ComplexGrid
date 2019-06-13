@@ -2,142 +2,142 @@ export default {
   fields: [
     {
       id: 'JGQC',
-      title: '机构全称',
+      title: '测试',
       linkable: true,
       width: 300
     },
     {
       id: 'JGJC',
-      title: '机构简称',
+      title: '测试',
       sortable: true,
       width: 190
     },
     {
       id: 'JGFZR',
-      title: '机构负责人',
+      title: '测试',
       width: 150,
       slot: true
     },
     {
       id: 'ZGJG',
-      title: '主管机构',
+      title: '测试',
       width: 150
     },
     {
       id: 'JGLB',
-      title: '机构类别',
+      title: '测试',
       width: 150
     },
     {
       id: 'JGZT',
-      title: '机构状态',
+      title: '测试',
       width: 120
     },
     {
       id: 'JGSX',
-      title: '机构属性',
+      title: '测试',
       width: 150
     },
     {
       id: 'JGCJ',
-      title: '机构层级',
+      title: '测试',
       width: 150
     },
     {
       id: 'BZRS',
-      title: '编制人数',
+      title: '测试',
       width: 150
     },
     {
       id: 'SYRS',
-      title: '实有人数',
+      title: '测试',
       width: 150
     }
   ],
   data: [
     {
-      JGQC: '城市有限公司-first',
+      JGQC: '测试-first',
       JGJC: '测试',
-      JGFZR: '张三',
-      ZGJG: '总行本部',
-      JGLB: '直属行',
-      JGZT: '运营',
-      JGSX: '外设单位',
-      JGCJ: '一级部门',
-      BZRS: '40',
-      SYRS: '39'
+      JGFZR: '测试',
+      ZGJG: '测试',
+      JGLB: '测试',
+      JGZT: '测试',
+      JGSX: '测试',
+      JGCJ: '测试',
+      BZRS: '测试',
+      SYRS: '测试'
     },
     {
-      JGQC: '城市有限公司-second',
-      JGJC: '城市',
-      JGFZR: '李四',
-      ZGJG: '总行本部',
-      JGLB: '直属',
-      JGZT: '运营',
-      JGSX: '外设单位',
-      JGCJ: '一级部门',
-      BZRS: '40',
-      SYRS: '39'
+      JGQC: '测试-first',
+      JGJC: '测试',
+      JGFZR: '测试',
+      ZGJG: '测试',
+      JGLB: '测试',
+      JGZT: '测试',
+      JGSX: '测试',
+      JGCJ: '测试',
+      BZRS: '测试',
+      SYRS: '测试'
     },
     {
-      JGQC: '城股份有限公司-three',
-      JGJC: '城',
-      JGFZR: '王五',
-      ZGJG: '本部',
-      JGLB: '直属',
-      JGZT: '运营',
-      JGSX: '外设单位',
-      JGCJ: '一级部门',
-      BZRS: '40',
-      SYRS: '39'
+      JGQC: '测试-first',
+      JGJC: '测试',
+      JGFZR: '测试',
+      ZGJG: '测试',
+      JGLB: '测试',
+      JGZT: '测试',
+      JGSX: '测试',
+      JGCJ: '测试',
+      BZRS: '测试',
+      SYRS: '测试'
     },
     {
-      JGQC: '城股份有限公司-four',
-      JGJC: '城市',
-      JGFZR: '小明',
-      ZGJG: '本部',
-      JGLB: '直属',
-      JGZT: '运营',
-      JGSX: '外设单位',
-      JGCJ: '一级部门',
-      BZRS: '40',
-      SYRS: '39'
+      JGQC: '测试-first',
+      JGJC: '测试',
+      JGFZR: '测试',
+      ZGJG: '测试',
+      JGLB: '测试',
+      JGZT: '测试',
+      JGSX: '测试',
+      JGCJ: '测试',
+      BZRS: '测试',
+      SYRS: '测试'
     },
     {
-      JGQC: '城股份有限公司-five',
-      JGJC: '城',
-      JGFZR: '小红',
-      ZGJG: '本部',
-      JGLB: '直属',
-      JGZT: '运营',
-      JGSX: '外设单位',
-      JGCJ: '一级部门',
-      BZRS: '40',
-      SYRS: '39'
+      JGQC: '测试-first',
+      JGJC: '测试',
+      JGFZR: '测试',
+      ZGJG: '测试',
+      JGLB: '测试',
+      JGZT: '测试',
+      JGSX: '测试',
+      JGCJ: '测试',
+      BZRS: '测试',
+      SYRS: '测试'
     },
     {
-      JGQC: '城股份有限公司-six',
-      JGJC: '城',
-      JGFZR: '小花',
-      ZGJG: '本部',
-      JGLB: '直',
-      JGZT: '运营',
-      JGSX: '外设单位',
-      JGCJ: '一级部门',
-      BZRS: '40',
-      SYRS: '39'
+      JGQC: '测试-first',
+      JGJC: '测试',
+      JGFZR: '测试',
+      ZGJG: '测试',
+      JGLB: '测试',
+      JGZT: '测试',
+      JGSX: '测试',
+      JGCJ: '测试',
+      BZRS: '测试',
+      SYRS: '测试'
     },
     {
-      JGQC: '城股份有限公司-first',
-      JGJC: '城',
-      JGFZR: '张三',
-      ZGJG: '总本部',
-      JGLB: '直属',
-      JGZT: '运营',
-      JGSX: '外设单位',
-      JGCJ: '一级部门',
-      BZRS: '40',
-      SYRS: '39'
+      JGQC: '测试-first',
+      JGJC: '测试',
+      JGFZR: '测试',
+      ZGJG: '测试',
+      JGLB: '测试',
+      JGZT: '测试',
+      JGSX: '测试',
+      JGCJ: '测试',
+      BZRS: '测试',
+      SYRS: '测试'
     }
   ],
   OperateMenuData: {
