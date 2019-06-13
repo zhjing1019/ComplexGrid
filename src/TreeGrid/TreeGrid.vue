@@ -7,7 +7,6 @@
       :checkable="true"
       :isTree="true"
       :empty="empty"
-      :linkSlot="true"
       style="height: 300px"
       @clickFirst="testClick"
       @dataPage="dataPage"
@@ -16,38 +15,8 @@
       @checkboxClick="checkboxClick"
       @checkAllClick="checkAllClick"
       :loadState="loadState"
-      :isDrag="isDrag"
+      :isDrag="true"
     >
-      <template slot="JGQC" slot-scope="field" class="fl-td">
-        <span
-          v-if="field.field.hoverRowDatafield.field.rowData"
-          class="icon-del-index"
-          @click="del(field.field.rowIndex)"
-        >
-          <svg-icon name="icon-ziyuan13" :width="16" :height="16"></svg-icon>
-        </span>
-
-        <span
-          v-if="field.field.hoverRowData === field.field.rowData"
-          class="icon-del-index"
-          @click="del(field.field.rowIndex)"
-        >
-          <svg-icon name="icon-fuzhi" :width="16" :height="16"></svg-icon>
-        </span>
-
-        <span v-if="field.field.hoverRowData === field.field.rowData" class="icon-del-index">
-          <svg-icon name="icon-edit" :width="16" :height="14"></svg-icon>
-        </span>
-      </template>
-      <template slot="linkSlot" slot-scope="field">
-        <span @click="del(field.field.rowIndex)">
-          <svg-icon name="icon-company" :width="16" :height="16"></svg-icon>
-        </span>
-        <span>自定义第一列，{{ field.field.rowData[field.field.field.id] }}</span>
-      </template>
-      <div slot="JGJC" slot-scope="field">
-        <span>{{ field.field.rowData[field.field.field.id] }}</span>
-      </div>
     </sum-grid>
     <br />
     <el-row>

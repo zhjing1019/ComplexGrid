@@ -4,16 +4,14 @@ export default {
       id: 'JGQC',
       title: '机构全称',
       linkable: true,
-      width: 300,
-      slot: true
+      width: 300
     },
 
     {
       id: 'JGJC',
       title: '机构简称',
       sortable: true,
-      width: 190,
-      slot: true
+      width: 190
     },
     {
       id: 'JGFZR',
@@ -60,7 +58,7 @@ export default {
     {
       id: 11111,
       JGQC: '城市银行股份有限公司-first',
-      JGJC: false,
+      JGJC: 'false',
       JGFZR: '张三',
       ZGJG: '总行本部',
       JGLB: '直属行',
@@ -73,7 +71,7 @@ export default {
         {
           id: 22222,
           JGQC: '二级11111111111',
-          JGJC: false,
+          JGJC: 'false',
           JGFZR: '张三',
           ZGJG: '总行本部',
           JGLB: '直属行',
@@ -86,7 +84,7 @@ export default {
             {
               id: 33333,
               JGQC: '三级',
-              JGJC: false,
+              JGJC: 'false',
               JGFZR: '张三',
               ZGJG: '总行本部',
               JGLB: '直属行',
@@ -101,7 +99,7 @@ export default {
         {
           id: 44444,
           JGQC: '二级2222222',
-          JGJC: false,
+          JGJC: 'false',
           JGFZR: '张三',
           ZGJG: '总行本部',
           JGLB: '直属行',
@@ -116,7 +114,7 @@ export default {
     {
       id: 55555,
       JGQC: '城市银行股份有限公司-second',
-      JGJC: false,
+      JGJC: 'false',
       JGFZR: '李四',
       ZGJG: '总行本部',
       JGLB: '直属行',
@@ -129,7 +127,7 @@ export default {
     {
       id: 66666,
       JGQC: '城市银行股份有限公司-three',
-      JGJC: true,
+      JGJC: 'true',
       JGFZR: '王五',
       ZGJG: '总行本部',
       JGLB: '直属行',
@@ -142,7 +140,7 @@ export default {
     {
       id: 77777,
       JGQC: '城市银行股份有限公司-four',
-      JGJC: true,
+      JGJC: 'true',
       JGFZR: '小明',
       ZGJG: '总行本部',
       JGLB: '直属行',
@@ -155,7 +153,7 @@ export default {
     {
       id: 88888,
       JGQC: '城市银行股份有限公司-five',
-      JGJC: true,
+      JGJC: 'true',
       JGFZR: '小红',
       ZGJG: '总行本部',
       JGLB: '直属行',
@@ -168,7 +166,7 @@ export default {
     {
       id: 99999,
       JGQC: '城市银行股份有限公司-six',
-      JGJC: true,
+      JGJC: 'true',
       JGFZR: '小花',
       ZGJG: '总行本部',
       JGLB: '直属行',
@@ -181,7 +179,7 @@ export default {
     {
       id: 10101010,
       JGQC: '城市银行股份有限公司-first',
-      JGJC: true,
+      JGJC: 'true',
       JGFZR: '张三',
       ZGJG: '总行本部',
       JGLB: '直属行',
@@ -194,7 +192,7 @@ export default {
         {
           id: 11111111,
           JGQC: '二级11111111111',
-          JGJC: true,
+          JGJC: 'true',
           JGFZR: '张三',
           ZGJG: '总行本部',
           JGLB: '直属行',
@@ -207,7 +205,7 @@ export default {
             {
               id: 12121212,
               JGQC: '三级',
-              JGJC: true,
+              JGJC: 'true',
               JGFZR: '张三',
               ZGJG: '总行本部',
               JGLB: '直属行',
@@ -220,7 +218,7 @@ export default {
             {
               id: 13131313,
               JGQC: '三级',
-              JGJC: true,
+              JGJC: 'true',
               JGFZR: '张三',
               ZGJG: '总行本部',
               JGLB: '直属行',
@@ -235,7 +233,7 @@ export default {
         {
           id: 14141414,
           JGQC: '二级2222222',
-          JGJC: true,
+          JGJC: 'true',
           JGFZR: '张三',
           ZGJG: '总行本部',
           JGLB: '直属行',
@@ -253,7 +251,7 @@ export default {
     {
       id: 151515,
       JGQC: '翻页后的数据-first',
-      JGJC: false,
+      JGJC: 'false',
       JGFZR: '张三',
       ZGJG: '总行本部',
       JGLB: '直属行',
@@ -266,7 +264,7 @@ export default {
         {
           id: 161616,
           JGQC: '翻页后的数据',
-          JGJC: false,
+          JGJC: 'false',
           JGFZR: '张三',
           ZGJG: '总行本部',
           JGLB: '直属行',
@@ -279,7 +277,7 @@ export default {
             {
               id: 171717,
               JGQC: '翻页后的数据',
-              JGJC: false,
+              JGJC: 'false',
               JGFZR: '张三',
               ZGJG: '总行本部',
               JGLB: '直属行',
@@ -294,7 +292,7 @@ export default {
         {
           id: 181818,
           JGQC: '翻页后的数据',
-          JGJC: false,
+          JGJC: 'false',
           JGFZR: '张三',
           ZGJG: '总行本部',
           JGLB: '直属行',
@@ -309,7 +307,7 @@ export default {
     {
       id: 191919,
       JGQC: '翻页后的数据-second',
-      JGJC: false,
+      JGJC: 'false',
       JGFZR: '李四',
       ZGJG: '总行本部',
       JGLB: '直属行',
@@ -322,7 +320,7 @@ export default {
     {
       id: 202020,
       JGQC: '翻页后的数据-three',
-      JGJC: true,
+      JGJC: 'true',
       JGFZR: '王五',
       ZGJG: '总行本部',
       JGLB: '直属行',
@@ -335,7 +333,7 @@ export default {
     {
       id: 212121,
       JGQC: '翻页后的数据-four',
-      JGJC: true,
+      JGJC: 'true',
       JGFZR: '小明',
       ZGJG: '总行本部',
       JGLB: '直属行',
@@ -348,7 +346,7 @@ export default {
     {
       id: 222222,
       JGQC: '翻页后的数据-five',
-      JGJC: true,
+      JGJC: 'true',
       JGFZR: '小红',
       ZGJG: '总行本部',
       JGLB: '直属行',
@@ -361,7 +359,7 @@ export default {
     {
       id: 232323,
       JGQC: '翻页后的数据-six',
-      JGJC: true,
+      JGJC: 'true',
       JGFZR: '小花',
       ZGJG: '总行本部',
       JGLB: '直属行',
@@ -374,7 +372,7 @@ export default {
     {
       id: 242424,
       JGQC: '翻页后的数据-first',
-      JGJC: true,
+      JGJC: 'true',
       JGFZR: '张三',
       ZGJG: '总行本部',
       JGLB: '直属行',
@@ -387,7 +385,7 @@ export default {
         {
           id: 252525,
           JGQC: '翻页后的数据',
-          JGJC: true,
+          JGJC: 'true',
           JGFZR: '张三',
           ZGJG: '总行本部',
           JGLB: '直属行',
@@ -400,7 +398,7 @@ export default {
             {
               id: 262626,
               JGQC: '翻页后的数据',
-              JGJC: true,
+              JGJC: 'true',
               JGFZR: '张三',
               ZGJG: '总行本部',
               JGLB: '直属行',
@@ -413,7 +411,7 @@ export default {
             {
               id: 272727,
               JGQC: '翻页后的数据',
-              JGJC: true,
+              JGJC: 'true',
               JGFZR: '张三',
               ZGJG: '总行本部',
               JGLB: '直属行',
@@ -428,7 +426,7 @@ export default {
         {
           id: 282828,
           JGQC: '翻页后的数据',
-          JGJC: true,
+          JGJC: 'true',
           JGFZR: '张三',
           ZGJG: '总行本部',
           JGLB: '直属行',

@@ -78,6 +78,10 @@ module.exports = {
       {
         test: /\.sass$/,
         loaders: ['style', 'css', 'sass']
+      },
+      {
+        test: /\.svg$/,
+        loader: 'svg-sprite-loader',
       }
     ]
   },
