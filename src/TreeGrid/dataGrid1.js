@@ -7,12 +7,12 @@ export default {
     },
     {
       id: 'JGJC',
-      title: '支部名称',
+      title: '名称',
       width: 600,
       children: [
         {
           id: 'Beijing',
-          title: '北京科技本部党支部',
+          title: '北京科技部',
           width: 150,
           children: [
             {
@@ -29,7 +29,7 @@ export default {
         },
         {
           id: 'GuangXi',
-          title: '广西建投桂银党支部',
+          title: '广西支部',
           width: 150,
           children: [
             {
@@ -46,7 +46,7 @@ export default {
         },
         {
           id: 'GuangXi',
-          title: '广西建投桂银党支部',
+          title: '支部',
           width: 150,
           children: [
             {
@@ -63,7 +63,7 @@ export default {
         },
         {
           id: 'GuangXi',
-          title: '广西建投桂银党支部',
+          title: '支部',
           width: 150,
           children: [
             {
