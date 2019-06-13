@@ -1,5 +1,6 @@
 <template>
   <div style="padding: 15px; height: 200px">
+    <h1>树形结构可支持拖拽的表格（自定义表格td里的内容）</h1>
     <sum-grid
       ref="treeGrid1"
       :fields="treeGridJson.fields"
@@ -26,7 +27,7 @@
       <el-button type="primary" @click="clear('treeGrid1')" plain style="margin-right: 10px">清空选中值</el-button>
     </el-row>
     <br />
-
+    <h1>树形结构表格（可自定义表格内容）</h1>
     <sum-grid
       ref="treeGrid2"
       :fields="treeGridJson2.fields"
@@ -53,7 +54,7 @@
       <el-button type="primary" @click="clear('treeGrid2')" plain style="margin-right: 10px">清空选中值</el-button>
     </el-row>
     <br />
-
+    <h1>多表头表格展示</h1>
     <sum-grid
       ref="dataGrid1"
       :fields="dataGrid1.fields"
@@ -72,7 +73,7 @@
       <el-button type="primary" @click="clear('dataGrid1')" plain style="margin-right: 10px">清空选中值</el-button>
     </el-row>
     <br />
-
+    <h1>表格为空</h1>
     <sum-grid
       ref="emptyTable"
       :fields="emptyData.fields"
@@ -85,7 +86,7 @@
     >
     </sum-grid>
     <br />
-
+    <h1>可拖拽排序表格</h1>
     <sum-grid
       ref="dataGrid2"
       :fields="dataGrid2.fields"

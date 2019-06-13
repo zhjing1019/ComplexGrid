@@ -79,6 +79,11 @@ module.exports = {
         test: /\.sass$/,
         loaders: ['style', 'css', 'sass']
       },
+      // {
+      //   test: /\.svg$/,
+      //   loader: 'svg-sprite-loader',
+      //   include: path.resolve(__dirname, './src/assets/icon') // 只带自己人玩
+      // }
       {
         test: /\.svg$/,
         loader: 'svg-sprite-loader',

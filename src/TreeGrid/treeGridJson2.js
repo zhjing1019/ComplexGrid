@@ -71,7 +71,7 @@ export default {
         {
           id: 22222,
           JGQC: '二级11111111111',
-          JGJC: '城市银行',
+          JGJC: '测试',
           JGFZR: '张三',
           ZGJG: '总',
           JGLB: '直属',

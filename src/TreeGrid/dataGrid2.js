@@ -57,7 +57,7 @@ export default {
   data: [
     {
       JGQC: '城市有限公司-first',
-      JGJC: '城市银行',
+      JGJC: '测试',
       JGFZR: '张三',
       ZGJG: '总行本部',
       JGLB: '直属行',
