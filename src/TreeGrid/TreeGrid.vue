@@ -1,5 +1,9 @@
 <template>
   <div style="padding: 15px; height: 200px">
+    <p>
+        <svg-icon name="hang-cao-zuo" :width="16" :height="16"></svg-icon>
+        <svg-icon name="icon-tuozhuai" :width="16" :height="16"></svg-icon>
+    </p>
     <h1>树形结构可支持拖拽的表格（自定义表格td里的内容）</h1>
     <sum-grid
       ref="treeGrid1"
@@ -160,6 +164,8 @@
 </template>
 
 <script>
+import '@/assets/icon/hang-cao-zuo.svg'
+import '@/assets/icon/icon-tuozhuai.svg'
 import SumGrid from '@/components/SumGrid/SumGrid.vue'
 import treeGridJson from './treeGridJson.js'
 import treeGridJson2 from './treeGridJson2.js'
