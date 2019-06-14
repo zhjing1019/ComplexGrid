@@ -108,10 +108,10 @@ export default {
         }
       }
       rows.push(<tr data-id={index}
-        onmouseover={() => {
+        onMouseover={() => {
           this.table.hoverRowData = rowData
         }}
-        onmouseout={
+        onMouseout={
           event => {
             if (event.currentTarget !== event.target) {
               return false
@@ -136,7 +136,8 @@ export default {
         class={{
           'tool-svg-icon': true,
           hide: !(this.table.hoverRowData === rowData) || !(Object.keys(this.table.OperateMenuData).length > 0)
-        }}><svg-icon width={14} height={14} name={'hang-cao-zuo'}></svg-icon></span>)
+        }}><img src={require('@/assets/hangcaozuo.png')} style={{width: '14px', height: '14px'}}></img></span>)
+
       if (field.slot && Object.keys(this.tableSub.$scopedSlots).length > 0) {
         SvgIcon = h(
           'span',
@@ -240,9 +241,13 @@ export default {
       let isDragActBottomRed = isTree ? (rowData.id === targetId) && whereInsert === 'bottom' && theme === 'red' : (rowIndex === targetId) && whereInsert === 'bottom' && theme === 'red'
       let SvgIcon = this.createFirstSvgIcon(h, rowData, field, level, rowIndex, colIndex)
       let operateMenus = this.createFirstOperate(h, rowData, field, level, rowIndex)
+      // let dragSvg = (<span style={{position: 'absolute', left: '0', 'verticalAlign': 'middle', cursor: 'move'}} onclick={(event) => { console.log('click,%o', event) }}>
+      //   <svg-icon style="vertical-align: middle; cursor:pointer" name="icon-tuozhuai" width={9} height={16}></svg-icon>
+      // </span>)
       let dragSvg = (<span style={{position: 'absolute', left: '0', 'verticalAlign': 'middle', cursor: 'move'}} onclick={(event) => { console.log('click,%o', event) }}>
-        <svg-icon style="vertical-align: middle; cursor:pointer" name="icon-tuozhuai" width={9} height={16}></svg-icon>
+        <img src={require('@/assets/tuozhuai.png')} style="vertical-align: middle; cursor:pointer; width: 9px; height: 11px"></img>
       </span>)
+
       let operateMenuData = {
         field: field,
         rowData: rowData,
@@ -269,13 +274,13 @@ export default {
             ref= {isTree ? 'id-' + rowData.id : 'id-' + rowIndex }
             tree-id={isTree ? rowData.id : rowIndex}
             draggable={this.table.isDrag}
-            ondragover={(event) => { this.draging(event) }}
-            ondragstart={(event) => { this.dragstart(event) }}
-            ondragend={(event) => { this.dragend(event, rowData) }}>
+            onDragover={(event) => { this.draging(event) }}
+            onDragstart={(event) => { this.dragstart(event) }}
+            onDragend={(event) => { this.dragend(event, rowData) }}>
             {dragCon}
             <span title={rowData[field.id]}>{serialContent}</span>
           </span>
-          <span class="operMenu-span-mouse" onmouseenter= {() => { this.$emit('open', operateMenuData) }}>
+          <span class="operMenu-span-mouse" onMouseenter= {() => { this.$emit('open', operateMenuData) }}>
             {[oper, svg]}
           </span>
         </div>

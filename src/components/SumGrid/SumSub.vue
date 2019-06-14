@@ -59,7 +59,7 @@ export default {
     items.push(<sum-create-head key={this.keyCount} onCheckAll={(val) => { this.checkAll(val) }}></sum-create-head>)
     if (this.allRow) items.push(<sum-create-body key={this.keyCount - 1} onCheckChang={(val, rowData, index) => { this.checkChang(val, rowData, index) }} onClickFirst = {(rowData, field, rowIndex, colIndex) => { this.$emit('clickFirst', rowData, field, rowIndex, colIndex) }} onOpen = {(operateMenuData) => { this.$emit('open', operateMenuData) }} onDragEnd = {(dragStartData, dragEndData, whereInsert) => { this.$emit('dragEnd', dragStartData, dragEndData, whereInsert) }}></sum-create-body>)
     if (this.table.isSlotFooter && this.allRow) { items.push(this.creatSlotFooter(h)) }
-    return <table ref="sumGridClick" class="sum-data-grid" style={{textAlign: this.table.textAlign}} onmouseover={(e) => this.tableHover(e)}>{items}</table>
+    return <table ref="sumGridClick" class="sum-data-grid" style={{textAlign: this.table.textAlign}} onMouseover={(e) => this.tableHover(e)}>{items}</table>
   },
   methods: {
     creatSlotFooter (h) {

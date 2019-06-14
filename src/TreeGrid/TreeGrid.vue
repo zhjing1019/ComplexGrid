@@ -1,9 +1,5 @@
 <template>
   <div style="padding: 15px; height: 200px">
-    <p>
-        <svg-icon name="hang-cao-zuo" :width="16" :height="16"></svg-icon>
-        <svg-icon name="icon-tuozhuai" :width="16" :height="16"></svg-icon>
-    </p>
     <h1>树形结构可支持拖拽的表格（自定义表格td里的内容）</h1>
     <sum-grid
       ref="treeGrid1"
