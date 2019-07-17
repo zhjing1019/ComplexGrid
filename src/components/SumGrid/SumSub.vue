@@ -1,7 +1,7 @@
 <script type="text/jsx">
 import Vue from 'vue'
-import '@/components/icon/hang-cao-zuo.svg'
-import '@/components/icon/icon-tuozhuai.svg'
+import '@/assets/icon/hang-cao-zuo.svg'
+import '@/assets/icon/icon-tuozhuai.svg'
 import SvgIcon from '../SvgIcon.vue'
 import SumCreateHead from './SumCreateHead.vue'
 import SumCreateBody from './SumCreateBody.vue'
@@ -59,7 +59,7 @@ export default {
     items.push(<sum-create-head key={this.keyCount} onCheckAll={(val) => { this.checkAll(val) }}></sum-create-head>)
     if (this.allRow) items.push(<sum-create-body key={this.keyCount - 1} onCheckChang={(val, rowData, index) => { this.checkChang(val, rowData, index) }} onClickFirst = {(rowData, field, rowIndex, colIndex) => { this.$emit('clickFirst', rowData, field, rowIndex, colIndex) }} onOpen = {(operateMenuData) => { this.$emit('open', operateMenuData) }} onDragEnd = {(dragStartData, dragEndData, whereInsert) => { this.$emit('dragEnd', dragStartData, dragEndData, whereInsert) }}></sum-create-body>)
     if (this.table.isSlotFooter && this.allRow) { items.push(this.creatSlotFooter(h)) }
-    return <table ref="sumGridClick" class="sum-data-grid" style={{textAlign: this.table.textAlign}} onmouseover={(e) => this.tableHover(e)}>{items}</table>
+    return <table ref="sumGridClick" class="sum-data-grid" style={{textAlign: this.table.textAlign}} onMouseover={(e) => this.tableHover(e)}>{items}</table>
   },
   methods: {
     creatSlotFooter (h) {
@@ -93,7 +93,7 @@ export default {
         this.table.treeDataChecked.list.forEach(x => {
           if (x) count++
         })
-        count == length
+        count === length
           ? (this.table.treeDataChecked.all = true)
           : (this.table.treeDataChecked.all = false)
       } else {
@@ -102,7 +102,7 @@ export default {
         this.table.checked.list.forEach(x => {
           if (x) count++
         })
-        count == length
+        count === length
           ? (this.table.checked.all = true)
           : (this.table.checked.all = false)
       }
@@ -157,11 +157,11 @@ export default {
       let rowIndex
       let target = event.target
       let nodeName = target.localName ? target.localName : ''
-      if (nodeName == null) return
+      if (nodeName === null) return
       let parentTa = ''
-      if (nodeName == 'td') {
+      if (nodeName === 'td') {
         rowIndex = target.parentNode.rowIndex - this.table.allHeadRow.length
-      } else if (nodeName == 'th' || nodeName == 'table') {
+      } else if (nodeName === 'th' || nodeName === 'table') {
         rowIndex = -1
       } else {
         parentTa = this.getParentTag(target)
@@ -185,7 +185,7 @@ export default {
         return
       }
       if (nodeName !== 'BODY') {
-        if (nodeName == 'TD') {
+        if (nodeName === 'TD') {
           return startTag.parentElement
         } else {
           if (startTag.parentElement.parentElement) {

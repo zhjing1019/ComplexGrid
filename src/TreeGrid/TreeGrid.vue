@@ -1,9 +1,6 @@
 <template>
   <div style="padding: 15px; height: 200px">
-    <el-row>
-      <el-button @click="isDrag = true">开始拖拽</el-button>
-    </el-row>
-    <br />
+    <h1>树形结构可支持拖拽的表格（自定义表格td里的内容）</h1>
     <sum-grid
       ref="treeGrid1"
       :fields="treeGridJson.fields"
@@ -11,7 +8,6 @@
       :checkable="true"
       :isTree="true"
       :empty="empty"
-      :linkSlot="true"
       style="height: 300px"
       @clickFirst="testClick"
       @dataPage="dataPage"
@@ -20,34 +16,8 @@
       @checkboxClick="checkboxClick"
       @checkAllClick="checkAllClick"
       :loadState="loadState"
-      :isDrag="isDrag"
+      :isDrag="true"
     >
-      <template slot="JGQC" slot-scope="field" class="fl-td">
-        <span
-          v-if="field.field.hoverRowData == field.field.rowData"
-          class="icon-del-index"
-          @click="del(field.field.rowIndex)"
-        >
-        </span>
-
-        <span
-          v-if="field.field.hoverRowData == field.field.rowData"
-          class="icon-del-index"
-          @click="del(field.field.rowIndex)"
-        >
-        </span>
-
-        <span v-if="field.field.hoverRowData == field.field.rowData" class="icon-del-index">
-        </span>
-      </template>
-      <template slot="linkSlot" slot-scope="field">
-        <span @click="del(field.field.rowIndex)">
-        </span>
-        <span>自定义第一列，{{ field.field.rowData[field.field.field.id] }}</span>
-      </template>
-      <div slot="JGJC" slot-scope="field">
-        <span>{{ field.field.rowData[field.field.field.id] }}</span>
-      </div>
     </sum-grid>
     <br />
     <el-row>
@@ -57,7 +27,7 @@
       <el-button type="primary" @click="clear('treeGrid1')" plain style="margin-right: 10px">清空选中值</el-button>
     </el-row>
     <br />
-
+    <h1>树形结构表格（可自定义表格内容）</h1>
     <sum-grid
       ref="treeGrid2"
       :fields="treeGridJson2.fields"
@@ -84,7 +54,7 @@
       <el-button type="primary" @click="clear('treeGrid2')" plain style="margin-right: 10px">清空选中值</el-button>
     </el-row>
     <br />
-
+    <h1>多表头表格展示</h1>
     <sum-grid
       ref="dataGrid1"
       :fields="dataGrid1.fields"
@@ -103,7 +73,7 @@
       <el-button type="primary" @click="clear('dataGrid1')" plain style="margin-right: 10px">清空选中值</el-button>
     </el-row>
     <br />
-
+    <h1>表格为空</h1>
     <sum-grid
       ref="emptyTable"
       :fields="emptyData.fields"
@@ -116,7 +86,7 @@
     >
     </sum-grid>
     <br />
-
+    <h1>可拖拽排序表格</h1>
     <sum-grid
       ref="dataGrid2"
       :fields="dataGrid2.fields"
@@ -158,20 +128,23 @@
     >
       <template slot="JGQC" slot-scope="field" class="fl-td">
         <span
-          v-if="field.field.rowIndex == field.field.hoverRow"
+          v-if="field.field.rowIndex === field.field.hoverRow"
           class="icon-del-index"
           @click="del(field.field.rowIndex)"
         >
+          <svg-icon name="icon-ziyuan13" :width="16" :height="16"></svg-icon>
         </span>
 
         <span
-          v-if="field.field.rowIndex == field.field.hoverRow"
+          v-if="field.field.rowIndex === field.field.hoverRow"
           class="icon-del-index"
           @click="del(field.field.rowIndex)"
         >
+          <svg-icon name="icon-fuzhi" :width="16" :height="16"></svg-icon>
         </span>
 
-        <span v-if="field.field.rowIndex == field.field.hoverRow" class="icon-del-index">
+        <span v-if="field.field.rowIndex === field.field.hoverRow" class="icon-del-index">
+          <svg-icon name="icon-edit" :width="16" :height="14"></svg-icon>
         </span>
       </template>
     </sum-grid>
@@ -187,7 +160,9 @@
 </template>
 
 <script>
-import SumGrid from '../components/SumGrid/SumGrid.vue'
+import '@/assets/icon/hang-cao-zuo.svg'
+import '@/assets/icon/icon-tuozhuai.svg'
+import SumGrid from '@/components/SumGrid/SumGrid.vue'
 import treeGridJson from './treeGridJson.js'
 import treeGridJson2 from './treeGridJson2.js'
 import dataGrid1 from './dataGrid1.js'
@@ -195,11 +170,12 @@ import dataGrid2 from './dataGrid2.js'
 import dataGrid3 from './dataGrid3.js'
 import emptyData from './emptyData.js'
 import emptyPng from './empty.png'
+import SvgIcon from '@/components/SvgIcon.vue'
 import { setTimeout } from 'timers'
 
 export default {
-  name: 'app',
-  components: { SumGrid },
+  name: 'TreeGrid',
+  components: { SumGrid, SvgIcon },
   data () {
     return {
       testData: [],
@@ -277,7 +253,7 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style>
 .icon-del-index {
   float: right;
   margin-right: 10px;

@@ -67,7 +67,7 @@
 <script>
 import ScrollBar from '@/components/ScrollBar.vue'
 import SumSub from './SumSub.vue'
-import scrollable from './../scrollable.js'
+import scrollable from '@/components/mixins/scrollable.js'
 import Vue from 'vue'
 export default {
   name: 'SumGrid',
@@ -354,40 +354,40 @@ export default {
           let newData = [...this.data]
           let newStart = Object.keys(startDragData.parent).length > 0 ? startDragData.parent.children : [...newData]
           newStart.forEach((x, index) => {
-            if (x.id == startDragData.id) newStart.splice(index, 1)
+            if (x.id === startDragData.id) newStart.splice(index, 1)
           })
-          if (Object.keys(startDragData.parent).length == 0) newData = [...newStart]
+          if (Object.keys(startDragData.parent).length === 0) newData = [...newStart]
 
           let newEnd = Object.keys(endDragData.parent).length > 0 ? endDragData.parent.children : [...newData]
           for (let i = 0; i < newEnd.length; i++) {
-            if (newEnd[i].id == endDragData.id) {
-              let newIndex = whereInsert == 'top' ? i : i + 1
+            if (newEnd[i].id === endDragData.id) {
+              let newIndex = whereInsert === 'top' ? i : i + 1
               newEnd.splice(newIndex, 0, startDragData)
               break
             }
           }
-          if (Object.keys(endDragData.parent).length == 0) newData = [...newEnd]
+          if (Object.keys(endDragData.parent).length === 0) newData = [...newEnd]
 
           return newData
         } else {
           let [newData, newSplitData] = [[...this.data], [...this.data]]
           newData.forEach((x, index) => {
-            if (x == startDragData) {
+            if (x === startDragData) {
               newSplitData[index] = undefined
               newData = [...newSplitData]
             }
           })
           newData.forEach((x, index) => {
             let newIndex = 0
-            if (x == endDragData) {
-              whereInsert == 'top' ? (newIndex = index) : (newIndex = index + 1)
+            if (x === endDragData) {
+              whereInsert === 'top' ? (newIndex = index) : (newIndex = index + 1)
               newSplitData.splice(newIndex, 0, startDragData)
               newData = [...newSplitData]
             }
           })
-          newData
+          // newData
           newSplitData.forEach((x, index) => {
-            if (x == undefined || x == 'undefined') {
+            if (x === undefined || x === 'undefined') {
               newSplitData.splice(index, 1)
             }
           })
@@ -410,7 +410,7 @@ export default {
     unfoldStatus () {
       let data = {}
       this.treeDataDetail.forEach((x, index) => {
-        index == 0 && x.children ? (data[x.id] = true) : (data[x.id] = false)
+        index === 0 && x.children ? (data[x.id] = true) : (data[x.id] = false)
       })
       return data
     },
@@ -434,11 +434,9 @@ export default {
         abs.y = element ? element.getBoundingClientRect().top : 0
         abs.x += window.screenLeft + document.documentElement.scrollLeft - document.documentElement.clientLeft
         abs.y += window.screenTop + document.documentElement.scrollTop - document.documentElement.clientTop
-      }
-
-      // 如果浏览器不兼容此方法
-      else {
-        while (element != document.body) {
+      } else {
+        // 如果浏览器不兼容此方法
+        while (element !== document.body) {
           abs.x += element.offsetLeft
           abs.y += element.offsetTop
           element = element.offsetParent
@@ -454,12 +452,12 @@ export default {
 
     dataPage () {
       this.heightAdaption()
-      if (this.loadState == 0) {
+      if (this.loadState === 0) {
         this.pageCount++
         this.pageText = '正在加载数据...'
-      } else if (this.loadState == 1) {
+      } else if (this.loadState === 1) {
         this.pageText = '数据加载失败'
-      } else if (this.loadState == 2) {
+      } else if (this.loadState === 2) {
         this.pageText = '暂无可加载的数据'
       }
       this.$emit('dataPage', this.pageCount)
