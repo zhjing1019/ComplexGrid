@@ -1,7 +1,7 @@
 <script type="text/jsx">
 import Vue from 'vue'
-import '@/common/icon/hang-cao-zuo.svg'
-import '@/common/icon/icon-tuozhuai.svg'
+import '@/components/icon/hang-cao-zuo.svg'
+import '@/components/icon/icon-tuozhuai.svg'
 import SvgIcon from '../SvgIcon.vue'
 import SumCreateHead from './SumCreateHead.vue'
 import SumCreateBody from './SumCreateBody.vue'

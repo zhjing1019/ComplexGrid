@@ -9,5 +9,4 @@ export default {
 </script>
 
 <style lang="scss">
-@import "@/common/common.scss";
 </style>

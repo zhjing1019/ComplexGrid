@@ -28,7 +28,6 @@
           class="icon-del-index"
           @click="del(field.field.rowIndex)"
         >
-          <svg-icon name="icon-ziyuan13" :width="16" :height="16"></svg-icon>
         </span>
 
         <span
@@ -36,30 +35,18 @@
           class="icon-del-index"
           @click="del(field.field.rowIndex)"
         >
-          <svg-icon name="icon-fuzhi" :width="16" :height="16"></svg-icon>
         </span>
 
         <span v-if="field.field.hoverRowData == field.field.rowData" class="icon-del-index">
-          <svg-icon name="icon-edit" :width="16" :height="14"></svg-icon>
         </span>
       </template>
       <template slot="linkSlot" slot-scope="field">
         <span @click="del(field.field.rowIndex)">
-          <svg-icon name="icon-company" :width="16" :height="16"></svg-icon>
         </span>
         <span>自定义第一列，{{ field.field.rowData[field.field.field.id] }}</span>
       </template>
       <div slot="JGJC" slot-scope="field">
         <span>{{ field.field.rowData[field.field.field.id] }}</span>
-        <toggle-switch
-          v-model="field.field.rowData[field.field.field.id]"
-          :value.sync="field.field.rowData[field.field.field.id]"
-          @change="switchChange"
-          labelChecked="发薪单位"
-          labelUnchecked="发薪单位"
-          colorChecked="#4786FF"
-        >
-        </toggle-switch>
       </div>
     </sum-grid>
     <br />
@@ -175,7 +162,6 @@
           class="icon-del-index"
           @click="del(field.field.rowIndex)"
         >
-          <svg-icon name="icon-ziyuan13" :width="16" :height="16"></svg-icon>
         </span>
 
         <span
@@ -183,11 +169,9 @@
           class="icon-del-index"
           @click="del(field.field.rowIndex)"
         >
-          <svg-icon name="icon-fuzhi" :width="16" :height="16"></svg-icon>
         </span>
 
         <span v-if="field.field.rowIndex == field.field.hoverRow" class="icon-del-index">
-          <svg-icon name="icon-edit" :width="16" :height="14"></svg-icon>
         </span>
       </template>
     </sum-grid>
@@ -203,21 +187,19 @@
 </template>
 
 <script>
-import SumGrid from '../common/component/SumGrid/SumGrid.vue';
-import ToggleSwitch from '../common/component/ToggleSwitch/ToggleSwitch.vue';
-import treeGridJson from './treeGridJson.js';
-import treeGridJson2 from './treeGridJson2.js';
-import dataGrid1 from './dataGrid1.js';
-import dataGrid2 from './dataGrid2.js';
-import dataGrid3 from './dataGrid3.js';
-import emptyData from './emptyData.js';
-import emptyPng from './empty.png';
-import SvgIcon from '../common/component/SvgIcon.vue';
-import { setTimeout } from 'timers';
+import SumGrid from '../components/SumGrid/SumGrid.vue'
+import treeGridJson from './treeGridJson.js'
+import treeGridJson2 from './treeGridJson2.js'
+import dataGrid1 from './dataGrid1.js'
+import dataGrid2 from './dataGrid2.js'
+import dataGrid3 from './dataGrid3.js'
+import emptyData from './emptyData.js'
+import emptyPng from './empty.png'
+import { setTimeout } from 'timers'
 
 export default {
   name: 'app',
-  components: { SumGrid, SvgIcon, ToggleSwitch },
+  components: { SumGrid },
   data () {
     return {
       testData: [],

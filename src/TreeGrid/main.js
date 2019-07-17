@@ -10,7 +10,6 @@ import ElTreeSelect from 'el-tree-select'
 
 import ref from 'vue-ref'
 Vue.use(ref)
-// import "@/common/js/iconfont.js";
 Vue.use(ElTreeSelect)
 new Vue({
   router,

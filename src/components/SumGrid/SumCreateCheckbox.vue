@@ -1,8 +1,8 @@
 <script type="text/jsx">
 // 创建表格主体部分
 import SvgIcon from '../SvgIcon.vue'
-import '@/common/icon/hang-cao-zuo.svg'
-import '@/common/icon/icon-tuozhuai.svg'
+import '@/components/icon/hang-cao-zuo.svg'
+import '@/components/icon/icon-tuozhuai.svg'
 import OperateMenu from '../OperateMenu/OperateMenu.vue'
 
 export default {
