@@ -8,7 +8,7 @@ import SumCreateBody from './SumCreateBody.vue'
 document.body.ondrop = function (event) {
   event.preventDefault()
   event.stopPropagation()
-}
+};
 export default {
   data () {
     return {
@@ -21,7 +21,8 @@ export default {
       dragY: 0,
       dragStartData: {},
       dragEndData: {},
-      keyCount: 1
+      keyCount: 1,
+      isCheckAllClick: false
     }
   },
   components: { SvgIcon, SumCreateHead, SumCreateBody },
@@ -50,16 +51,49 @@ export default {
     hoverRowData: {
       type: Object
     }
-
   },
   render (h) {
     this.nodes.all = []
     let items = []
     this.nodeIndexTotalizer = 0
-    items.push(<sum-create-head key={this.keyCount} onCheckAll={(val) => { this.checkAll(val) }}></sum-create-head>)
-    if (this.allRow) items.push(<sum-create-body key={this.keyCount - 1} onCheckChang={(val, rowData, index) => { this.checkChang(val, rowData, index) }} onClickFirst = {(rowData, field, rowIndex, colIndex) => { this.$emit('clickFirst', rowData, field, rowIndex, colIndex) }} onOpen = {(operateMenuData) => { this.$emit('open', operateMenuData) }} onDragEnd = {(dragStartData, dragEndData, whereInsert) => { this.$emit('dragEnd', dragStartData, dragEndData, whereInsert) }}></sum-create-body>)
-    if (this.table.isSlotFooter && this.allRow) { items.push(this.creatSlotFooter(h)) }
-    return <table ref="sumGridClick" class="sum-data-grid" style={{textAlign: this.table.textAlign}} onMouseover={(e) => this.tableHover(e)}>{items}</table>
+    items.push(
+      <sum-create-head
+        key={this.keyCount}
+        onCheckAll={val => {
+          this.checkAll(val)
+        }}
+      ></sum-create-head>
+    )
+    if (this.allRow) {
+      items.push(
+        <sum-create-body
+          key={this.keyCount + 1}
+          onCheckChang={(val, rowData, index) => {
+            this.checkChang(val, rowData, index)
+          }}
+          onClickFirst={(rowData, field, rowIndex, colIndex) => {
+            this.$emit('clickFirst', rowData, field, rowIndex, colIndex)
+          }}
+          onOpen={operateMenuData => {
+            this.$emit('open', operateMenuData)
+          }}
+          onDragEnd={(dragStartData, dragEndData, whereInsert) => {
+            this.$emit('dragEnd', dragStartData, dragEndData, whereInsert)
+          }}
+        ></sum-create-body>
+      )
+    }
+    if (this.table.isSlotFooter && this.allRow) items.push(this.creatSlotFooter(h))
+    return (
+      <table
+        ref="sumGridClick"
+        class="sum-data-grid"
+        style={{ textAlign: this.table.textAlign }}
+        onmouseover={e => this.tableHover(e)}
+      >
+        {items}
+      </table>
+    )
   },
   methods: {
     creatSlotFooter (h) {
@@ -84,7 +118,6 @@ export default {
       }
     },
     checkChang (value, rowData, index) {
-      console.log(value)
       let length = this.table.isTree ? this.table.treeAllData(this.table.data).length : this.table.data.length
       if (this.table.isTree) {
         Vue.set(this.table.treeDataChecked.list, this.getRank(rowData.id), value)
@@ -93,38 +126,42 @@ export default {
         this.table.treeDataChecked.list.forEach(x => {
           if (x) count++
         })
-        count === length
-          ? (this.table.treeDataChecked.all = true)
-          : (this.table.treeDataChecked.all = false)
+        count == length ? this.$set(this.table.treeDataChecked, 'all', true) : this.$set(this.table.treeDataChecked, 'all', false)
       } else {
         Vue.set(this.table.checked.list, index, value)
         let count = 0
         this.table.checked.list.forEach(x => {
           if (x) count++
         })
-        count === length
-          ? (this.table.checked.all = true)
-          : (this.table.checked.all = false)
+        count == length ? this.$set(this.table.checked, 'all', true) : this.$set(this.table.checked, 'all', false)
       }
       this.getSelectedRows(value)
       this.$emit('checkboxClick', value, rowData, index)
-      this.keyCount++
+      // this.keyCount++;
     },
 
     checkAll (value) {
+      this.isUpdata++
+      this.isCheckAllClick = true
       if (this.table.isTree) {
-        this.table.treeDataChecked.all = value
-        this.table.treeDataChecked.list.fill(value, 0, this.table.treeAllData(this.table.data).length)
+        this.$set(this.table.treeDataChecked, 'all', value)
+        this.table.treeDataChecked.list.forEach((x, index) => {
+          this.$set(this.table.treeDataChecked.list, index, value)
+        })
         this.getSelectedRows(value)
       } else {
         this.table.checked.all = value
-        this.table.checked.list.fill(value, 0, this.table.data.length)
+        this.$set(this.table.checked, 'all', value)
+        this.table.checked.list.forEach((x, index) => {
+          this.$set(this.table.checked.list, index, value)
+        })
         this.getSelectedRows(value)
-      };
+      }
       let data = []
-      value ? data = this.checkAllData : data = []
+      value ? (data = this.checkAllData) : (data = [])
       this.$emit('checkAllClick', value, data)
-      this.keyCount++
+      // this.keyCount++;
+      // this.table.isUpdata++;
     },
     getSelectedRows () {
       // 获取选中行
@@ -146,22 +183,22 @@ export default {
             data.push(this.table.data[index])
           }
         })
-      };
+      }
       this.checkAllData = data
       this.table.selectRow = data
-      this.keyCount++
+      // this.keyCount++
     },
     tableHover (event) {
       event.stopPropagation()
       // event.preventDefault();
       let rowIndex
       let target = event.target
-      let nodeName = target.localName ? target.localName : ''
-      if (nodeName === null) return
-      let parentTa = ''
-      if (nodeName === 'td') {
+      let nodeName = target.localName ? target.localName : '';
+      if (nodeName == null) return
+      let parentTa = '';
+      if (nodeName == 'td') {
         rowIndex = target.parentNode.rowIndex - this.table.allHeadRow.length
-      } else if (nodeName === 'th' || nodeName === 'table') {
+      } else if (nodeName == 'th' || nodeName == 'table') {
         rowIndex = -1
       } else {
         parentTa = this.getParentTag(target)
@@ -178,14 +215,14 @@ export default {
       // 传入标签是否是DOM对象
       if (!(startTag instanceof HTMLElement)) return
       // 父级标签是否是body,是着停止返回集合,反之继续
-      let nodeName = ''
+      let nodeName = '';
       if (startTag.parentElement) {
-        nodeName = startTag.parentElement.nodeName ? startTag.parentElement.nodeName : ''
+        nodeName = startTag.parentElement.nodeName ? startTag.parentElement.nodeName : '';
       } else {
         return
       }
-      if (nodeName !== 'BODY') {
-        if (nodeName === 'TD') {
+      if ('BODY' !== nodeName) {
+        if (nodeName == 'TD') {
           return startTag.parentElement
         } else {
           if (startTag.parentElement.parentElement) {
@@ -203,7 +240,7 @@ export default {
 .sum-data-grid {
   position: absolute;
   overflow: hidden;
-  border: 1px solid #dcdfe6;
+  // border: 1px solid #dcdfe6;
   border-top: 0;
   border-collapse: collapse;
   user-select: none;
@@ -262,6 +299,10 @@ export default {
       }
     }
   }
+  .drag-ing {
+    background-color: #fff;
+    box-shadow: 0px 2px 12px #ebeef4;
+  }
   td {
     box-sizing: border-box;
     padding: 10px;
@@ -272,10 +313,11 @@ export default {
       // position: relative;
       margin-left: -15px;
       width: 100%;
-      .drag-ing {
-        opacity: 0.8;
-        background: rgba(196, 216, 255, 1);
+      .operMenu-span-mouse {
+        display: inline-block;
+        height: 100%;
       }
+
       .first-cell-drag {
         width: 100%;
         padding: 0 19px 0 10px;
@@ -288,12 +330,15 @@ export default {
       .operateMenu {
         position: absolute;
         right: 5px;
-        width: 14px;
-        top: -6px;
+        width: 20px;
+        top: 0;
+        height: 100%;
         background-color: transparent;
         z-index: 2;
         .el-menu--collapse {
-          width: 14px;
+          width: 20px;
+          top: 50%;
+          margin-top: -15px;
         }
         .el-menu {
           border-right: 0;
@@ -311,6 +356,8 @@ export default {
       position: absolute;
       right: 5px;
       cursor: pointer;
+      top: 50%;
+      margin-top: -10px;
     }
 
     .hide {
@@ -320,11 +367,33 @@ export default {
       text-decoration: none;
       color: #303133;
     }
+    .hover-tr-link {
+      color: #4786ff;
+      text-decoration: underline;
+      cursor: pointer;
+    }
+    .hover-tr-link-red {
+      color: #e32b30;
+      text-decoration: underline;
+      cursor: pointer;
+    }
     .link-a:hover {
       color: #4786ff;
       text-decoration: underline;
       cursor: pointer;
     }
+    .link-a-red {
+      text-decoration: none;
+      color: #303133;
+    }
+    .link-a-red:hover {
+      color: #e32b30;
+      text-decoration: underline;
+      cursor: pointer;
+    }
+  }
+  .drag-start-el {
+    background-color: #fff !important;
   }
   .act-top-drag {
     border-top: 2px solid #4786ff !important;
