@@ -2,17 +2,17 @@ export default {
   fields: [
     {
       id: 'name',
-      title: '考核表名称',
+      title: '测试',
       width: 200
     },
     {
       id: 'SYND',
-      title: '适用年度',
+      title: '测试',
       width: 100
     },
     {
       id: 'SYZB',
-      title: '适用支部',
+      title: '测试',
       width: 200
     }
   ],
