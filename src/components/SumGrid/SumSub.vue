@@ -1,7 +1,5 @@
 <script type="text/jsx">
 import Vue from 'vue'
-import '@/assets/icon/hang-cao-zuo.svg'
-import '@/assets/icon/icon-tuozhuai.svg'
 import SvgIcon from '../SvgIcon.vue'
 import SumCreateHead from './SumCreateHead.vue'
 import SumCreateBody from './SumCreateBody.vue'
@@ -89,7 +87,7 @@ export default {
         ref="sumGridClick"
         class="sum-data-grid"
         style={{ textAlign: this.table.textAlign }}
-        onmouseover={e => this.tableHover(e)}
+        onMouseover={e => this.tableHover(e)}
       >
         {items}
       </table>

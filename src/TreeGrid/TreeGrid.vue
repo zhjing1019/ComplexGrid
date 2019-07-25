@@ -160,8 +160,6 @@
 </template>
 
 <script>
-import '@/assets/icon/hang-cao-zuo.svg'
-import '@/assets/icon/icon-tuozhuai.svg'
 import SumGrid from '@/components/SumGrid/SumGrid.vue'
 import treeGridJson from './treeGridJson.js'
 import treeGridJson2 from './treeGridJson2.js'
