@@ -1,8 +1,5 @@
 <template>
   <div ref="allDataGrid" class="sum-grid" @wheel="wheel">
-    <!-- <div class="is-loading" v-if="isRealLoading && this.data.length == 0">
-      <img src="./loading_dangwu.gif" alt="" />
-    </div> -->
     <div v-if="isPaging" class="loading-tr">
       {{ pageText }}
     </div>
@@ -136,9 +133,7 @@ export default {
         left: -this.scrollX + 'px',
         width: this.actualWidth + 'px',
         minWidth: '100%',
-        // minHeight: this.minHeight + "px",
         maxHeight: this.actualHeight + 'px',
-        // height: this.actualHeight + "px",
         borderBottom: this.borderBottom ? ' 1px solid #dcdfe6' : '0'
       }
     },
@@ -148,7 +143,6 @@ export default {
         left: -this.scrollX + 'px',
         width: this.actualWidth + 'px',
         minWidth: '100%',
-        // minHeight: this.minHeight + "px",
         maxHeight: this.actualHeight + 'px',
         boxSizing: 'border-box',
         'z-index': 2

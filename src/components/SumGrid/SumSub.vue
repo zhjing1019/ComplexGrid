@@ -8,7 +8,7 @@ import SumCreateBody from './SumCreateBody.vue'
 document.body.ondrop = function (event) {
   event.preventDefault()
   event.stopPropagation()
-};
+}
 export default {
   data () {
     return {
@@ -126,14 +126,14 @@ export default {
         this.table.treeDataChecked.list.forEach(x => {
           if (x) count++
         })
-        count == length ? this.$set(this.table.treeDataChecked, 'all', true) : this.$set(this.table.treeDataChecked, 'all', false)
+        count === length ? this.$set(this.table.treeDataChecked, 'all', true) : this.$set(this.table.treeDataChecked, 'all', false)
       } else {
         Vue.set(this.table.checked.list, index, value)
         let count = 0
         this.table.checked.list.forEach(x => {
           if (x) count++
         })
-        count == length ? this.$set(this.table.checked, 'all', true) : this.$set(this.table.checked, 'all', false)
+        count === length ? this.$set(this.table.checked, 'all', true) : this.$set(this.table.checked, 'all', false)
       }
       this.getSelectedRows(value)
       this.$emit('checkboxClick', value, rowData, index)
@@ -193,12 +193,12 @@ export default {
       // event.preventDefault();
       let rowIndex
       let target = event.target
-      let nodeName = target.localName ? target.localName : '';
+      let nodeName = target.localName ? target.localName : ''
       if (nodeName == null) return
-      let parentTa = '';
-      if (nodeName == 'td') {
+      let parentTa = ''
+      if (nodeName === 'td') {
         rowIndex = target.parentNode.rowIndex - this.table.allHeadRow.length
-      } else if (nodeName == 'th' || nodeName == 'table') {
+      } else if (nodeName === 'th' || nodeName === 'table') {
         rowIndex = -1
       } else {
         parentTa = this.getParentTag(target)
@@ -215,14 +215,14 @@ export default {
       // 传入标签是否是DOM对象
       if (!(startTag instanceof HTMLElement)) return
       // 父级标签是否是body,是着停止返回集合,反之继续
-      let nodeName = '';
+      let nodeName = ''
       if (startTag.parentElement) {
-        nodeName = startTag.parentElement.nodeName ? startTag.parentElement.nodeName : '';
+        nodeName = startTag.parentElement.nodeName ? startTag.parentElement.nodeName : ''
       } else {
         return
       }
-      if ('BODY' !== nodeName) {
-        if (nodeName == 'TD') {
+      if (nodeName !== 'BODY') {
+        if (nodeName === 'TD') {
           return startTag.parentElement
         } else {
           if (startTag.parentElement.parentElement) {
