@@ -173,11 +173,12 @@ export default {
     },
     // 创建第一列自定义的icon操作菜单
     createFirstSvgIcon (h, rowData, field, level, rowIndex, colIndex) {
+      let svgImg = (<img src={require('./../../assets/hangcaozuo.png')} style="width: 20px;height: 20px;"></img>)
       let SvgIcon = (<span
         class={{
           'tool-svg-icon': true,
-          hide: !(this.table.hoverRowData == rowData) || !(Object.keys(this.table.OperateMenuData).length > 0)
-        }}><svg-icon width={20} height={20} name={'hang-cao-zuo'}></svg-icon></span>)
+          hide: !(this.table.hoverRowData === rowData) || !(Object.keys(this.table.OperateMenuData).length > 0)
+        }}>{svgImg}</span>)
       if (field.slot && Object.keys(this.tableSub.$scopedSlots).length > 0) {
         SvgIcon = h(
           'span',
@@ -297,8 +298,9 @@ export default {
       let isDragActBottomRed = isTree ? (rowData.id == targetId) && whereInsert == 'bottom' && theme == 'red' : (rowIndex == targetId) && whereInsert == 'bottom' && theme == 'red'
       let SvgIcon = this.createFirstSvgIcon(h, rowData, field, level, rowIndex, colIndex)
       let operateMenus = this.createFirstOperate(h, rowData, field, level, rowIndex)
+      let svgImg = (<img draggable={false} src={require('./../../assets/tuozhuai.png')} style="width: 16px;height: 16px;"></img>)
       let dragSvg = (<span style={{position: 'absolute', left: '0', 'verticalAlign': 'middle', cursor: 'move', marginTop: '2px'}} onClick={(event) => { console.log('click,%o', event) }}>
-        <svg-icon style="vertical-align: middle; cursor:pointer" name="icon-tuozhuai" width={16} height={16}></svg-icon>
+        {svgImg}
       </span>)
       let operateMenuData = {
         field: field,
