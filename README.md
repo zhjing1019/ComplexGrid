@@ -6,9 +6,8 @@
 > 自定义表格内容   
 > 拖拽表格数据   
 > 多级表头展示  
-## Build Setup
 
-``` bash
+
 # install dependencies 下载依赖包
 npm install
 
