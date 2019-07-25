@@ -4,6 +4,7 @@
       {{ pageText }}
     </div>
     <sum-sub
+      :key="isUpdata"
       ref="indexGridSub"
       :isAll="true"
       class="all-data-style"
@@ -27,6 +28,7 @@
     </sum-sub>
     <sum-sub :style="topStyle" @checkAllClick="checkAllClick" :allRow="false" v-if="scrollY > 0"></sum-sub>
     <sum-sub
+      :key="isUpdata + 1"
       :style="leftStyle"
       :onlyFix="true"
       :allRow="true"
@@ -48,6 +50,7 @@
       <slot v-if="linkSlot" slot="linkSlot" slot-scope="field" name="linkSlot" :field="field"></slot>
     </sum-sub>
     <sum-sub
+      :key="isUpdata + 2"
       :style="cornerStyle"
       @checkAllClick="checkAllClick"
       :onlyFix="true"
@@ -55,6 +58,7 @@
       v-if="scrollY > 0 && scrollX > 0"
     ></sum-sub>
     <scroll-bar
+      :key="isUpdata + 3"
       v-if="vBarSize > 0 && vBarSize < 100"
       :vertical="true"
       :size="vBarSize"
@@ -75,16 +79,19 @@ export default {
   components: { ScrollBar, SumSub },
   data () {
     return {
+      isUpdata: 0,
+      isRealLoading: false,
       startDragId: '',
       whereInsert: '',
       dragTarget: [],
+      dragingData: {},
       targetId: '',
       checked: { all: false, list: new Array(this.data.length) },
       sorted: [],
       hoverRow: -1,
       hoverRowData: null,
-      checkWidth: 50,
-      serialWidth: 80,
+      checkWidth: 32,
+      serialWidth: 50,
       emptyDefault: {},
       borderBottom: true,
       dataGridHeight: 0,
@@ -105,7 +112,9 @@ export default {
       startDragData: {},
       endDragData: {},
       treeDataDetail: [],
-      tdHeight: this.isTree ? new Array(this.treeAllData(this.data).length) : new Array(this.data.length)
+      tdHeight: this.isTree ? new Array(this.treeAllData(this.data).length) : new Array(this.data.length),
+      dataChangeCount: 0,
+      isOperateOpen: false
     }
   },
   provide () {
@@ -124,9 +133,7 @@ export default {
         left: -this.scrollX + 'px',
         width: this.actualWidth + 'px',
         minWidth: '100%',
-        // minHeight: this.minHeight + "px",
         maxHeight: this.actualHeight + 'px',
-        // height: this.actualHeight + "px",
         borderBottom: this.borderBottom ? ' 1px solid #dcdfe6' : '0'
       }
     },
@@ -136,7 +143,6 @@ export default {
         left: -this.scrollX + 'px',
         width: this.actualWidth + 'px',
         minWidth: '100%',
-        // minHeight: this.minHeight + "px",
         maxHeight: this.actualHeight + 'px',
         boxSizing: 'border-box',
         'z-index': 2
@@ -223,6 +229,10 @@ export default {
         this.expandStatus = newVal
       }
     },
+    isLoading (val) {
+      console.log(val)
+      if (!val) this.isRealLoading = false
+    },
     isPaging (val) {
       this.heightAdaption()
       if (val) {
@@ -233,20 +243,45 @@ export default {
       deep: true,
       immediate: true,
       handler (val) {
-        this.data = val
         let dataDetail = []
         this.isTree ? (dataDetail = this.treeAllData(this.data)) : (dataDetail = this.data)
         this.treeDataDetail = dataDetail
-        this.expandStatus = this.unfoldStatus()
+
+        if (this.dataChangeCount === 0 && this.data.length > 0) {
+          this.expandStatus = this.unfoldStatus()
+          this.dataChangeCount++
+        }
         this.checked.list = [...this.checked.list, ...new Array(val.length)]
+        // this.$set(this.checked, "list", [...new Array(val.length)]);
         if (this.isTree) {
           this.treeDataChecked.list = [...this.treeDataChecked.list, ...new Array(this.treeAllData(val).length)]
+          // this.$set(this.treeDataChecked, "list", [...new Array(this.treeAllData(val).length)]);
         }
+        console.log(this.checked)
+        this.data = val
         this.tdHeight = this.isTree ? new Array(this.treeAllData(this.data).length) : new Array(this.data.length)
       }
     }
   },
   props: {
+    pageSize: {
+      type: Number,
+      default () {
+        return 20
+      }
+    },
+    isLoading: {
+      type: Boolean,
+      default () {
+        return false
+      }
+    },
+    pageNumber: {
+      type: Number,
+      default () {
+        return 1
+      }
+    },
     theme: {
       type: String,
       default () {
@@ -318,7 +353,11 @@ export default {
       default: 0
     }
   },
+
   mounted () {
+    setTimeout(() => {
+      if (this.isLoading) this.isRealLoading = true
+    }, 500)
     this.heightAdaption()
     window.onresize = () => {
       this.heightAdaption()
@@ -328,6 +367,7 @@ export default {
   },
   methods: {
     resetSumGridStyle () {
+      this.isUpdata++
       this.scrollX = 0
       this.scrollY = 0
     },
@@ -354,40 +394,39 @@ export default {
           let newData = [...this.data]
           let newStart = Object.keys(startDragData.parent).length > 0 ? startDragData.parent.children : [...newData]
           newStart.forEach((x, index) => {
-            if (x.id === startDragData.id) newStart.splice(index, 1)
+            if (x.id == startDragData.id) newStart.splice(index, 1)
           })
-          if (Object.keys(startDragData.parent).length === 0) newData = [...newStart]
+          if (Object.keys(startDragData.parent).length == 0) newData = [...newStart]
 
           let newEnd = Object.keys(endDragData.parent).length > 0 ? endDragData.parent.children : [...newData]
           for (let i = 0; i < newEnd.length; i++) {
-            if (newEnd[i].id === endDragData.id) {
-              let newIndex = whereInsert === 'top' ? i : i + 1
+            if (newEnd[i].id == endDragData.id) {
+              let newIndex = whereInsert == 'top' ? i : i + 1
               newEnd.splice(newIndex, 0, startDragData)
               break
             }
           }
-          if (Object.keys(endDragData.parent).length === 0) newData = [...newEnd]
+          if (Object.keys(endDragData.parent).length == 0) newData = [...newEnd]
 
           return newData
         } else {
           let [newData, newSplitData] = [[...this.data], [...this.data]]
           newData.forEach((x, index) => {
-            if (x === startDragData) {
+            if (x == startDragData) {
               newSplitData[index] = undefined
               newData = [...newSplitData]
             }
           })
           newData.forEach((x, index) => {
             let newIndex = 0
-            if (x === endDragData) {
-              whereInsert === 'top' ? (newIndex = index) : (newIndex = index + 1)
+            if (x == endDragData) {
+              whereInsert == 'top' ? (newIndex = index) : (newIndex = index + 1)
               newSplitData.splice(newIndex, 0, startDragData)
               newData = [...newSplitData]
             }
           })
-          // newData
           newSplitData.forEach((x, index) => {
-            if (x === undefined || x === 'undefined') {
+            if (x == undefined || x == 'undefined') {
               newSplitData.splice(index, 1)
             }
           })
@@ -410,7 +449,7 @@ export default {
     unfoldStatus () {
       let data = {}
       this.treeDataDetail.forEach((x, index) => {
-        index === 0 && x.children ? (data[x.id] = true) : (data[x.id] = false)
+        index == 0 && x.children ? (data[x.id] = true) : (data[x.id] = false)
       })
       return data
     },
@@ -434,9 +473,11 @@ export default {
         abs.y = element ? element.getBoundingClientRect().top : 0
         abs.x += window.screenLeft + document.documentElement.scrollLeft - document.documentElement.clientLeft
         abs.y += window.screenTop + document.documentElement.scrollTop - document.documentElement.clientTop
-      } else {
-        // 如果浏览器不兼容此方法
-        while (element !== document.body) {
+      }
+
+      // 如果浏览器不兼容此方法
+      else {
+        while (element != document.body) {
           abs.x += element.offsetLeft
           abs.y += element.offsetTop
           element = element.offsetParent
@@ -452,12 +493,12 @@ export default {
 
     dataPage () {
       this.heightAdaption()
-      if (this.loadState === 0) {
+      if (this.loadState == 0) {
         this.pageCount++
         this.pageText = '正在加载数据...'
-      } else if (this.loadState === 1) {
+      } else if (this.loadState == 1) {
         this.pageText = '数据加载失败'
-      } else if (this.loadState === 2) {
+      } else if (this.loadState == 2) {
         this.pageText = '暂无可加载的数据'
       }
       this.$emit('dataPage', this.pageCount)
@@ -572,6 +613,26 @@ export default {
   border-right: 1px solid #dcdfe6;
   border-left: 1px solid #dcdfe6;
   border-bottom: 1px solid #dcdfe6;
+  .is-loading {
+    width: 100%;
+    height: 100%;
+    line-height: 100%;
+    text-align: center;
+    border-radius: 5px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    background: #fff;
+    z-index: 1000;
+    border-top: 1px solid #dcdfe6;
+    img {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      margin-top: -100px;
+      margin-left: -100px;
+    }
+  }
   table {
     table-layout: fixed;
   }
