@@ -26,7 +26,7 @@ export default {
       tr = this.createEmpty(h)
     };
     this.tdHeightGet()
-    return (<tbody ref="allDataTbody" onmouseleave={() => { this.tbodyLeave() }}>{tr}</tbody>)
+    return (<tbody ref="allDataTbody" onMouseleave={() => { this.tbodyLeave() }}>{tr}</tbody>)
   },
 
   methods: {
@@ -42,12 +42,12 @@ export default {
       let oper = document.getElementsByClassName('el-menu--vertical')
       let count = 0
       for (let i = 0; i < oper.length; i++) {
-        if (oper[i].style.display != 'none') {
+        if (oper[i].style.display !== 'none') {
           count++
           break
         }
       }
-      count == 0 ? this.table.isOperateOpen = false : this.table.isOperateOpen = true
+      count === 0 ? this.table.isOperateOpen = false : this.table.isOperateOpen = true
     },
     tdHeightGet () {
       this.$nextTick(() => {
@@ -140,7 +140,7 @@ export default {
       let count = this.tableSub.onlyFix ? this.table.fixCols : this.table.actualFields.length
       for (let i = 0; i < count; i++) {
         let field = this.table.actualFields[i]
-        if (i == 0) {
+        if (i === 0) {
           cells.push(this.createFirstCell(h, rowData, field, level, index, i))
         } else {
           cells.push(
@@ -149,12 +149,12 @@ export default {
         }
       }
       rows.push(<tr data-id={index}
-        onmouseover={() => {
+        onMouseover={() => {
           this.table.hoverRowData = rowData
         }}
-        onmouseout={
+        onMouseout={
           event => {
-            if (event.currentTarget != event.target) {
+            if (event.currentTarget !== event.target) {
               return false
             }
             // 重置
@@ -239,7 +239,7 @@ export default {
     },
     // 创建第一列linkable
     createFirstLinkable (h, rowData, field, rowIndex, colIndex) {
-      let a = (<a onclick={ () => {
+      let a = (<a onClick={ () => {
         this.$emit('clickFirst', rowData, field, rowIndex, colIndex)
       }} class={{
         'hover-tr-link-red': this.table.isTree ? this.table.hoverRowData == rowData && this.table.theme === 'red' : this.table.hoverRow == rowIndex && this.table.theme === 'red',
@@ -297,7 +297,7 @@ export default {
       let isDragActBottomRed = isTree ? (rowData.id == targetId) && whereInsert == 'bottom' && theme == 'red' : (rowIndex == targetId) && whereInsert == 'bottom' && theme == 'red'
       let SvgIcon = this.createFirstSvgIcon(h, rowData, field, level, rowIndex, colIndex)
       let operateMenus = this.createFirstOperate(h, rowData, field, level, rowIndex)
-      let dragSvg = (<span style={{position: 'absolute', left: '0', 'verticalAlign': 'middle', cursor: 'move', marginTop: '2px'}} onclick={(event) => { console.log('click,%o', event) }}>
+      let dragSvg = (<span style={{position: 'absolute', left: '0', 'verticalAlign': 'middle', cursor: 'move', marginTop: '2px'}} onClick={(event) => { console.log('click,%o', event) }}>
         <svg-icon style="vertical-align: middle; cursor:pointer" name="icon-tuozhuai" width={16} height={16}></svg-icon>
       </span>)
       let operateMenuData = {
@@ -316,21 +316,21 @@ export default {
       if (isTree ? isCurrnetHoverRow : isDragHoverRow) dragCon = [dragSvg]
       isTree ? cell = [expandIcon, ...content] : cell = content
       serialContent = [...serialContent, ...cell]
-      if ((isTree ? isCurrnetHoverRow : rowIndex != -1) && Object.keys(this.table.OperateMenuData).length > 0) { oper = operateMenus }
-      if ((isTree ? isCurrnetHoverRow : rowIndex != -1)) { svg = SvgIcon }
+      if ((isTree ? isCurrnetHoverRow : rowIndex !== -1) && Object.keys(this.table.OperateMenuData).length > 0) { oper = operateMenus }
+      if ((isTree ? isCurrnetHoverRow : rowIndex !== -1)) { svg = SvgIcon }
 
       let cover = this.createCover(h, rowData)
       return (<td
         ref= {isTree ? 'id-' + rowData.id : 'id-' + rowIndex }
         tree-id={isTree ? rowData.id : rowIndex}
         draggable={this.table.isDrag}
-        ondragover={(event) => { this.draging(event) }}
-        ondragstart={(event) => { this.dragstart(event) }}
-        ondragend={(event) => { this.dragend(event, rowData) }}
+        onDragover={(event) => { this.draging(event) }}
+        onDragstart={(event) => { this.dragstart(event) }}
+        onDragend={(event) => { this.dragend(event, rowData) }}
         onClick={(event) => {
           let target = event.target
           let parentNodeName = this.getParentNodeName(target)
-          if (parentNodeName == 'TR' || parentNodeName == 'TD') {
+          if (parentNodeName === 'TR' || parentNodeName === 'TD') {
             let realIndex = isTree ? this.tableSub.getRank(rowData.id) : rowIndex
             let newVal = !(isTree
               ? (this.table.treeDataChecked.list[realIndex])
@@ -350,7 +350,7 @@ export default {
             {dragCon}
             <span title={rowData[field.id]}>{serialContent}</span>
           </span>
-          <span class="operMenu-span-mouse" onmouseenter= {() => { this.$emit('open', operateMenuData) }}>
+          <span class="operMenu-span-mouse" onMouseenter= {() => { this.$emit('open', operateMenuData) }}>
             {[oper, svg]}
           </span>
         </div>
@@ -489,7 +489,7 @@ export default {
       }
     },
     draging (e) {
-      if (e.pageX == this.tableSub.dragX && e.pageY == this.tableSub.dragY) return
+      if (e.pageX === this.tableSub.dragX && e.pageY === this.tableSub.dragY) return
       this.tableSub.dragX = e.pageX
       this.tableSub.dragY = e.pageY
       // 改变鼠标目标元素的样式
@@ -505,7 +505,7 @@ export default {
       this.tableSub.dragEndData = dragEndData
       if (this.table.isTree) {
         this.table.treeDataDetail.forEach(x => {
-          if (x.id == this.table.targetId) dragEndData = x
+          if (x.id === this.table.targetId) dragEndData = x
         })
       } else {
         dragEndData = this.table.treeDataDetail[this.table.targetId]
@@ -527,7 +527,7 @@ export default {
       let dragData = {}
       if (this.table.isTree) {
         this.table.treeDataDetail.forEach(x => {
-          if (x.id == startDragId) dragData = x
+          if (x.id === startDragId) dragData = x
         })
       } else {
         dragData = this.table.treeDataDetail[startDragId]
