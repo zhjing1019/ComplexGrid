@@ -1,15 +1,16 @@
 # grid
 
-> 正常的表格展示
-> 树形结构的表格展示
-> 表格进行拖拽排序
+> 正常的表格展示  
+> 树形结构的表格展示  
+> 表格进行拖拽排序  
+> 自定义表格内容    
 
 ## Build Setup
 
 ``` bash
-# install dependencies
+# install dependencies 下载依赖包
 npm install
 
-# serve with hot reload at localhost:8080
+# serve with hot reload at localhost:8080 启动项目
 npm run dev
 

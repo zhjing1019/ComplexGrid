@@ -45,7 +45,7 @@ export default {
           break
         }
       }
-      count === 0 ? this.table.isOperateOpen = false : this.table.isOperateOpen = true
+      count == 0 ? this.table.isOperateOpen = false : this.table.isOperateOpen = true
     },
     tdHeightGet () {
       this.$nextTick(() => {
@@ -93,7 +93,7 @@ export default {
     getRank (id) {
       if (this.table.isTree) {
         for (let i = 0; i < this.table.treeDataDetail.length; i++) {
-          if (id === this.table.treeDataDetail[i].id) {
+          if (id == this.table.treeDataDetail[i].id) {
             return i
           }
         }
@@ -134,11 +134,11 @@ export default {
       let expanded = this.table.expandStatus ? this.table.expandStatus[rowData.id] : false
 
       let isCurrnetHoverRow = false
-      if (this.table.hoverRowData) { isCurrnetHoverRow = this.table.hoverRowData.id === rowData.id && isTree || this.table.hoverRowData == {} }
+      if (this.table.hoverRowData) { isCurrnetHoverRow = this.table.hoverRowData.id == rowData.id && isTree || this.table.hoverRowData == {} }
       let count = this.tableSub.onlyFix ? this.table.fixCols : this.table.actualFields.length
       for (let i = 0; i < count; i++) {
         let field = this.table.actualFields[i]
-        if (i === 0) {
+        if (i == 0) {
           cells.push(this.createFirstCell(h, rowData, field, level, index, i))
         } else {
           cells.push(
@@ -175,7 +175,7 @@ export default {
       let SvgIcon = (<span
         class={{
           'tool-svg-icon': true,
-          hide: !(this.table.hoverRowData === rowData) || !(Object.keys(this.table.OperateMenuData).length > 0)
+          hide: !(this.table.hoverRowData == rowData) || !(Object.keys(this.table.OperateMenuData).length > 0)
         }}>{svgImg}</span>)
       if (field.slot && Object.keys(this.tableSub.$scopedSlots).length > 0) {
         SvgIcon = h(
@@ -241,7 +241,7 @@ export default {
       let a = (<a onClick={ () => {
         this.$emit('clickFirst', rowData, field, rowIndex, colIndex)
       }} class={{
-        'hover-tr-link-red': this.table.isTree ? this.table.hoverRowData == rowData && this.table.theme === 'red' : this.table.hoverRow == rowIndex && this.table.theme === 'red',
+        'hover-tr-link-red': this.table.isTree ? this.table.hoverRowData == rowData && this.table.theme == 'red' : this.table.hoverRow == rowIndex && this.table.theme == 'red',
         'hover-tr-link': this.table.isTree ? this.table.hoverRowData == rowData && this.table.theme != 'red' : this.table.hoverRow == rowIndex && this.table.theme != 'red'
       }}>
         {rowData[field.id]} </a>)
@@ -276,11 +276,11 @@ export default {
     isDragElement (rowData) {
       let count = 0
       this.dragingArr.forEach(x => {
-        if (x === rowData) {
+        if (x == rowData) {
           count++
         }
       })
-      if (count === 0) {
+      if (count == 0) {
         return false
       } else {
         return true
@@ -330,7 +330,7 @@ export default {
         onClick={(event) => {
           let target = event.target
           let parentNodeName = this.getParentNodeName(target)
-          if (parentNodeName === 'TR' || parentNodeName === 'TD') {
+          if (parentNodeName == 'TR' || parentNodeName == 'TD') {
             let realIndex = isTree ? this.tableSub.getRank(rowData.id) : rowIndex
             let newVal = !(isTree
               ? (this.table.treeDataChecked.list[realIndex])
@@ -489,7 +489,7 @@ export default {
       }
     },
     draging (e) {
-      if (e.pageX === this.tableSub.dragX && e.pageY === this.tableSub.dragY) return
+      if (e.pageX == this.tableSub.dragX && e.pageY == this.tableSub.dragY) return
       this.tableSub.dragX = e.pageX
       this.tableSub.dragY = e.pageY
       // 改变鼠标目标元素的样式
@@ -505,19 +505,17 @@ export default {
       this.tableSub.dragEndData = dragEndData
       if (this.table.isTree) {
         this.table.treeDataDetail.forEach(x => {
-          if (x.id === this.table.targetId) dragEndData = x
+          if (x.id == this.table.targetId) dragEndData = x
         })
       } else {
         dragEndData = this.table.treeDataDetail[this.table.targetId]
       }
       this.tableSub.dragEndData = dragEndData
-
       this.$emit('dragEnd', this.tableSub.dragStartData, this.tableSub.dragEndData, this.table.whereInsert)
       this.clearHoverStatus()
     },
     dragstart (e) {
       if (navigator.userAgent.indexOf('Firefox') >= 0) {
-        // Firefox drag have a bug
         e.dataTransfer.setData('Text', this.id)
       }
       let startDragId = e.target.getAttribute('tree-id')
@@ -527,7 +525,7 @@ export default {
       let dragData = {}
       if (this.table.isTree) {
         this.table.treeDataDetail.forEach(x => {
-          if (x.id === startDragId) dragData = x
+          if (x.id == startDragId) dragData = x
         })
       } else {
         dragData = this.table.treeDataDetail[startDragId]

@@ -39,6 +39,7 @@
       @clickFirst="testClick"
       @open="open"
       :OperateMenuData="treeGridJson2.OperateMenuData"
+      style="height: 300px"
     >
       <template slot="JGFZR" slot-scope="field">
         <span>自定义内容</span>
@@ -63,6 +64,7 @@
       textAlign="left"
       :isTree="false"
       :loadState="3"
+      style="height: 300px"
     >
     </sum-grid>
     <br />
@@ -100,6 +102,7 @@
       @dragEnd="dragend"
       :OperateMenuData="dataGrid2.OperateMenuData"
       @clickFirst="testClick"
+      style="height: 300px"
     >
       <template slot="JGFZR" slot-scope="field">
         <span>自定义内容</span>
