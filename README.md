@@ -107,14 +107,14 @@ dragend (startval, endval, whereInsert) {
     
   ],
 ```
-##### 第一列特殊
-第一列linkable：表头可点击
-第一列slot：表头操作按钮部分自定义
-width： 宽度
-##### 其他列
-sortable：是否排序
-slot：是否自定义
-width： 宽度
+### 第一列特殊
+##### 第一列linkable：表头可点击
+##### 第一列slot：表头操作按钮部分自定义
+##### width： 宽度
+### 其他列
+##### sortable：是否排序
+##### slot：是否自定义
+##### width： 宽度
 
 ### 树形结构数据
 每行数据需要有id， children代表子节点数据
