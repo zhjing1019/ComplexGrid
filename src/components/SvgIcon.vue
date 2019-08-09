@@ -1,3 +1,4 @@
+
 <template>
   <svg class="icon" :style="svgStyle">
     <use :xlink:href="`#${name}`" />

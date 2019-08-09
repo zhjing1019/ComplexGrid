@@ -350,7 +350,7 @@ export default {
     // 3，表示不用异步加载数据
     loadState: {
       type: Number,
-      default: 0
+      default: 3
     }
   },
 
