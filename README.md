@@ -51,6 +51,7 @@ npm run dev
       @checkAllClick="checkAllClick"
       :loadState="loadState"
       :isDrag="true"
+      :isExpandAll="true"
     >
 </sum-grid>
 ```
@@ -62,6 +63,7 @@ npm run dev
 ##### empty表格为空时所展示的图片
 ##### loadState 表格状态（ 0,表示加载数据成功。1，表示加载数据失败。2，表示没有可加载的数据。3，表示不用异步加载数据）
 ##### isDrag 表示是否可以拖拽
+##### isExpandAll 表示是否全部展开
 ### 表格方法
 ##### clickFirst表格第一列被点击后的事件
 ##### dragStart开始拖拽时的事件（返回当前被拖拽的数据）
@@ -77,9 +79,10 @@ dragend (startval, endval, whereInsert) {
 ##### checkAllClick 表格被全选事件
 
 ### 组件调用事件
-##### console.log(this.$refs[ref].selectRow)  表示选中行的数据
-##### this.$refs[ref].isQueryDrag(startval, endval, whereInsert) 表示确定拖拽
-##### this.$refs[ref].resetSumGridStyle () 重置表格
+##### console.log(this.$refs[ref].selectRow)  表示选中行的数据 
+##### this.$refs[ref].isQueryDrag(startval, endval, whereInsert) 表示确定拖拽 
+##### this.$refs[ref].resetSumGridStyle () 重置表格 
+##### this.$refs[ref].makeTreeExpand(id, isExpand)  展开或收起某一行数据（id为树的节点id，isExpand为Boolean值，true为展开，false为收起）。 
 
 
 
