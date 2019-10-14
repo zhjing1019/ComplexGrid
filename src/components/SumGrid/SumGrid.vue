@@ -252,18 +252,24 @@ export default {
           this.dataChangeCount++
         }
         this.checked.list = [...this.checked.list, ...new Array(val.length)]
-        // this.$set(this.checked, "list", [...new Array(val.length)]);
         if (this.isTree) {
           this.treeDataChecked.list = [...this.treeDataChecked.list, ...new Array(this.treeAllData(val).length)]
-          // this.$set(this.treeDataChecked, "list", [...new Array(this.treeAllData(val).length)]);
         }
-        console.log(this.checked)
+        if (this.isExpandAll) {
+          Object.keys(this.expandStatus).forEach(x => {
+            this.expandStatus[x] = true
+          })
+        }
         this.data = val
         this.tdHeight = this.isTree ? new Array(this.treeAllData(this.data).length) : new Array(this.data.length)
       }
     }
   },
   props: {
+    isExpandAll: {
+      type: Boolean,
+      default: false
+    },
     pageSize: {
       type: Number,
       default () {
@@ -366,6 +372,9 @@ export default {
     // this.tdHeightGet();
   },
   methods: {
+    makeAllTreeExpand (id, isExpan) {
+      this.expandStatus[id] = isExpan
+    },
     resetSumGridStyle () {
       this.isUpdata++
       this.scrollX = 0

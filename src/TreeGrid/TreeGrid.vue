@@ -17,6 +17,7 @@
       @checkAllClick="checkAllClick"
       :loadState="loadState"
       :isDrag="true"
+      :isExpandAll="true"
     >
     </sum-grid>
     <br />
