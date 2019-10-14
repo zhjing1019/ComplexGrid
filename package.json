@@ -1,9 +1,8 @@
 {
-  "name": "grid",
-  "version": "1.0.0",
+  "name": "complex-grid",
+  "version": "1.1.0",
   "description": "A Vue.js project",
   "author": "zhangjing <zhjing1019@gmail.com>",
-  "private": true,
   "scripts": {
     "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
     "start": "npm run dev",
