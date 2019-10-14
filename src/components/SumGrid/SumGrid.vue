@@ -372,8 +372,8 @@ export default {
     // this.tdHeightGet();
   },
   methods: {
-    makeAllTreeExpand (id, isExpan) {
-      this.expandStatus[id] = isExpan
+    makeTreeExpand (id, isExpand) {
+      this.$set('this.expandStatus', id, isExpand)
     },
     resetSumGridStyle () {
       this.isUpdata++
