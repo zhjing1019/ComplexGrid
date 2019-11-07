@@ -369,7 +369,6 @@ export default {
       this.heightAdaption()
     }
     this.moreHead = this.isMoreHead()
-    // this.tdHeightGet();
   },
   methods: {
     makeTreeExpand (id, isExpand) {
