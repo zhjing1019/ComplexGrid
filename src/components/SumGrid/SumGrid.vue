@@ -69,9 +69,9 @@
   </div>
 </template>
 <script>
-import ScrollBar from '@/components/ScrollBar.vue'
+import ScrollBar from './../ScrollBar.vue'
 import SumSub from './SumSub.vue'
-import scrollable from '@/components/mixins/scrollable.js'
+import scrollable from './../mixins/scrollable.js'
 import Vue from 'vue'
 export default {
   name: 'SumGrid',
