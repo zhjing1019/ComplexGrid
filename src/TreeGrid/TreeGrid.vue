@@ -1,5 +1,5 @@
 <template>
-  <div style="padding: 15px; height: 200px">
+  <div class="tree-grid">
     <h1>树形结构可支持拖拽的表格（自定义表格td里的内容）</h1>
     <complex-grid
       ref="treeGrid1"
@@ -136,7 +136,7 @@
           class="icon-del-index"
           @click="del(field.field.rowIndex)"
         >
-          <svg-icon name="icon-ziyuan13" :width="16" :height="16"></svg-icon>
+          <!-- <svg-icon name="icon-ziyuan13" :width="16" :height="16"></svg-icon> -->
         </span>
 
         <span
@@ -144,11 +144,11 @@
           class="icon-del-index"
           @click="del(field.field.rowIndex)"
         >
-          <svg-icon name="icon-fuzhi" :width="16" :height="16"></svg-icon>
+          <!-- <svg-icon name="icon-fuzhi" :width="16" :height="16"></svg-icon> -->
         </span>
 
         <span v-if="field.field.rowIndex === field.field.hoverRow" class="icon-del-index">
-          <svg-icon name="icon-edit" :width="16" :height="14"></svg-icon>
+          <!-- <svg-icon name="icon-edit" :width="16" :height="14"></svg-icon> -->
         </span>
       </template>
     </complex-grid>
@@ -172,12 +172,12 @@ import dataGrid2 from './dataGrid2.js'
 import dataGrid3 from './dataGrid3.js'
 import emptyData from './emptyData.js'
 import emptyPng from './empty.png'
-import SvgIcon from './../components/SvgIcon.vue'
+// import SvgIcon from './../components/SvgIcon.vue'
 import { setTimeout } from 'timers'
 
 export default {
   name: 'TreeGrid',
-  components: { ComplexGrid, SvgIcon },
+  components: { ComplexGrid },
   data () {
     return {
       testData: [],
@@ -260,5 +260,9 @@ export default {
   float: right;
   margin-right: 10px;
   cursor: pointer;
+}
+.tree-grid{
+  margin-top: 20px;
+  padding: 0 20px;
 }
 </style>

@@ -1,6 +1,6 @@
 <script type="text/jsx">
 import Vue from 'vue'
-import SvgIcon from '../SvgIcon.vue'
+import SvgIcon from './SvgIcon.vue'
 import SumCreateHead from './SumCreateHead.vue'
 import SumCreateBody from './SumCreateBody.vue'
 document.body.ondrop = function (event) {

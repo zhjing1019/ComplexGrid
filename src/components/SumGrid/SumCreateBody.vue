@@ -1,8 +1,8 @@
 <script type="text/jsx">
 // 创建表格主体部分
 
-import SvgIcon from '../SvgIcon.vue'
-import OperateMenu from '../OperateMenu/OperateMenu.vue'
+import SvgIcon from './SvgIcon.vue'
+import OperateMenu from './../OperateMenu/OperateMenu.vue'
 import SumCreateCheckbox from './SumCreateCheckbox.vue'
 import CoverDiv from './CoverDiv.vue'
 export default {

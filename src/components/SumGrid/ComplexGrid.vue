@@ -69,7 +69,7 @@
   </div>
 </template>
 <script>
-import ScrollBar from './../ScrollBar.vue'
+import ScrollBar from './ScrollBar.vue'
 import SumSub from './SumSub.vue'
 import scrollable from './../mixins/scrollable.js'
 import Vue from 'vue'
