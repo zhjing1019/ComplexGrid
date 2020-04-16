@@ -1,8 +1,8 @@
-import SumGrid from "./SumGrid/SumGrid.vue";
+import ComplexGrid from "./SumGrid/ComplexGrid.vue";
 
 // 为组件添加 install 方法，用于按需引入
-SumGrid.install = function(Vue) {
-  Vue.component(SumGrid.name, SumGrid);
+ComplexGrid.install = function(Vue) {
+  Vue.component(ComplexGrid.name, ComplexGrid);
 };
 
-export default SumGrid;
+export default ComplexGrid;

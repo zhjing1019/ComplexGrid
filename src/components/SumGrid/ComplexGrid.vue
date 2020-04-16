@@ -74,7 +74,7 @@ import SumSub from './SumSub.vue'
 import scrollable from './../mixins/scrollable.js'
 import Vue from 'vue'
 export default {
-  name: 'SumGrid',
+  name: 'ComplexGrid',
   mixins: [scrollable],
   components: { ScrollBar, SumSub },
   data () {

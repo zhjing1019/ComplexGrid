@@ -36,7 +36,7 @@ npm run dev
 `components: { SumGrid },` 
 ### 组件的用法 
 ```
-<sum-grid
+<complex-grid
       ref="treeGrid1"
       :fields="treeGridJson.fields"
       :data.sync="treeGridJson.data"
@@ -53,7 +53,7 @@ npm run dev
       :isDrag="true"
       :isExpandAll="true"
     >
-</sum-grid>
+</complex-grid>
 ```
 ### 表格属性
 ##### fields代表表头字段
