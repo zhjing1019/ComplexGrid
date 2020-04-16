@@ -31,9 +31,11 @@ npm run dev
 ##### 下载组件 
 `npm install complex-grid` 
 ##### 引用组件 
-`import SumGrid from 'complex-grid'` 
-##### 注册组件 
-`components: { SumGrid },` 
+在main.js里引用组件
+```javascript
+import ComplexGrid from "complex-grid"
+Vue.use(ComplexGrid)
+```
 ### 组件的用法 
 ```
 <complex-grid
