@@ -214,5 +214,5 @@ dragend (startval, endval, whereInsert) {
 
 ```
 如果有任何问题可以关注我的个人技术公众号javascript艺术，或者添加我微信反馈
-![image](https://user-images.githubusercontent.com/29360917/115188866-252e2400-a118-11eb-8fbb-d507ac5d37bb.png)
+![image](https://user-images.githubusercontent.com/29360917/115189574-3cb9dc80-a119-11eb-8e88-d98aed4a3476.png)
 ![image](https://user-images.githubusercontent.com/29360917/115189133-9372e680-a118-11eb-9570-eae1b8662869.png)
